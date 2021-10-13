@@ -34,6 +34,67 @@
       <button class="btn" @click="editor.chain().focus().redo().run()">
         redo
       </button>
+
+      <button class="btn" @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()">
+        Insert Table
+      </button>
+      <button class="btn" @click="editor.chain().focus().addColumnBefore().run()" :disabled="!editor.can().addColumnBefore()">
+        Add Column Before
+      </button>
+      <button class="btn" @click="editor.chain().focus().addColumnAfter().run()" :disabled="!editor.can().addColumnAfter()">
+        Add Column After
+      </button>
+      <button class="btn" @click="editor.chain().focus().deleteColumn().run()" :disabled="!editor.can().deleteColumn()">
+        Delete Column
+      </button>
+
+      <button class="btn" @click="editor.chain().focus().addRowBefore().run()" :disabled="!editor.can().addRowBefore()">
+        Add Row Before
+      </button>
+      <button class="btn" @click="editor.chain().focus().addRowAfter().run()" :disabled="!editor.can().addRowAfter()">
+        Add Row After
+      </button>
+      <button class="btn" @click="editor.chain().focus().deleteRow().run()" :disabled="!editor.can().deleteRow()">
+        Delete Row
+      </button>
+
+      <button class="btn" @click="editor.chain().focus().deleteTable().run()" :disabled="!editor.can().deleteTable()">
+        Delete Table
+      </button>
+
+      <button class="btn" @click="editor.chain().focus().mergeCells().run()" :disabled="!editor.can().mergeCells()">
+        Merge Cells
+      </button>
+      <button class="btn" @click="editor.chain().focus().splitCell().run()" :disabled="!editor.can().splitCell()">
+        Split Cell
+      </button>
+
+      <button class="btn" @click="editor.chain().focus().toggleHeaderColumn().run()" :disabled="!editor.can().toggleHeaderColumn()">
+        Toggle Header Column
+      </button>
+      <button class="btn" @click="editor.chain().focus().toggleHeaderRow().run()" :disabled="!editor.can().toggleHeaderRow()">
+        Toggle Header Row
+      </button>
+      <button class="btn" @click="editor.chain().focus().toggleHeaderCell().run()" :disabled="!editor.can().toggleHeaderCell()">
+        Toggle Header Cell
+      </button>
+
+      <button class="btn" @click="editor.chain().focus().mergeOrSplit().run()" :disabled="!editor.can().mergeOrSplit()">
+        Merge Or Split
+      </button>
+      <button class="btn" @click="editor.chain().focus().setCellAttribute('backgroundColor', '#FAF594').run()" :disabled="!editor.can().setCellAttribute('backgroundColor', '#FAF594')">
+        Set Cell Attribute
+      </button>
+      <button class="btn" @click="editor.chain().focus().fixTables().run()" :disabled="!editor.can().fixTables()">
+        Fix Tables
+      </button>
+
+      <button class="btn" @click="editor.chain().focus().goToNextCell().run()" :disabled="!editor.can().goToNextCell()">
+        Next Cell
+      </button>
+      <button class="btn" @click="editor.chain().focus().goToPreviousCell().run()" :disabled="!editor.can().goToPreviousCell()">
+        Previous Cell
+      </button>
     </div>
 
     <div class="h-screen bg-pink-700 text-gray-800 italic m-2 p-2 rounded" >
@@ -46,6 +107,32 @@
 <script>
 import { Editor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
+import Table from '@tiptap/extension-table'
+import TableRow from '@tiptap/extension-table-row'
+import TableCell from '@tiptap/extension-table-cell'
+import TableHeader from '@tiptap/extension-table-header'
+
+const CustomTableCell = TableCell.extend({
+  addAttributes() {
+    return {
+      // extend the existing attributes …
+      ...this.parent?.(),
+
+      // and add a new one …
+      backgroundColor: {
+        default: null,
+        parseHTML: element => element.getAttribute('data-background-color'),
+        renderHTML: attributes => {
+          return {
+            'data-background-color': attributes.backgroundColor,
+            style: `background-color: ${attributes.backgroundColor}`,
+          }
+        },
+      },
+    }
+  },
+})
+
 
 export default {
   components: {
@@ -62,9 +149,53 @@ export default {
     this.editor = new Editor({
       extensions: [
         StarterKit,
+        Table.configure({
+          resizable: true,
+        }),
+        TableRow,
+        TableHeader,
+        // TableCell,
+        CustomTableCell,
       ],
       content: `
         <p class="text-green-500">Begin editing here</p>
+
+        <h3>
+          Have you seen our tables? They are amazing!
+        </h3>
+        <ul>
+          <li>tables with rows, cells and headers (optional)</li>
+          <li>support for <code>colgroup</code> and <code>rowspan</code></li>
+          <li>and even resizable columns (optional)</li>
+        </ul>
+        <p>
+          Here is an example:
+        </p>
+        <table>
+          <tbody>
+            <tr>
+              <th>Name</th>
+              <th colspan="3">Description</th>
+            </tr>
+            <tr>
+              <td>Cyndi Lauper</td>
+              <td>singer</td>
+              <td>songwriter</td>
+              <td>actress</td>
+            </tr>
+            <tr>
+              <td>Philipp Kühn</td>
+              <td>designer</td>
+              <td>developer</td>
+              <td>maker</td>
+            </tr>
+            <tr>
+              <td>Hans Pagel</td>
+              <td>wrote this</td>
+              <td colspan="2">that’s it</td>
+            </tr>
+          </tbody>
+        </table>
       `,
     })
   },
@@ -75,62 +206,122 @@ export default {
 }
 </script>
 
-// <style lang="scss">
-// /* Basic editor styles */
-// .ProseMirror {
-//   > * + * {
-//     margin-top: 0.75em;
-//   }
+<style lang="scss">
+/* Basic editor styles */
+.ProseMirror {
+  margin: 1rem 0;
 
-//   ul,
-//   ol {
-//     padding: 0 1rem;
-//     display: list-item;
-//   }
+  > * + * {
+    margin-top: 0.75em;
+  }
 
-//   h1,
-//   h2,
-//   h3,
-//   h4,
-//   h5,
-//   h6 {
-//     line-height: 1.1;
-//   }
+  ul,
+  ol {
+    padding: 0 1rem;
+  }
 
-//   code {
-//     background-color: rgba(#616161, 0.1);
-//     color: #616161;
-//   }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.1;
+  }
 
-//   pre {
-//     background: #0D0D0D;
-//     color: #FFF;
-//     font-family: 'JetBrainsMono', monospace;
-//     padding: 0.75rem 1rem;
-//     border-radius: 0.5rem;
+  code {
+    background-color: rgba(#616161, 0.1);
+    color: #616161;
+  }
 
-//     code {
-//       color: inherit;
-//       padding: 0;
-//       background: none;
-//       font-size: 0.8rem;
-//     }
-//   }
+  pre {
+    background: #0D0D0D;
+    color: #FFF;
+    font-family: 'JetBrainsMono', monospace;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
 
-//   img {
-//     max-width: 100%;
-//     height: auto;
-//   }
+    code {
+      color: inherit;
+      padding: 0;
+      background: none;
+      font-size: 0.8rem;
+    }
+  }
 
-//   blockquote {
-//     padding-left: 1rem;
-//     border-left: 2px solid rgba(#0D0D0D, 0.1);
-//   }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
 
-//   hr {
-//     border: none;
-//     border-top: 2px solid rgba(#0D0D0D, 0.1);
-//     margin: 2rem 0;
-//   }
-// }
-// </style>
+  blockquote {
+    padding-left: 1rem;
+    border-left: 2px solid rgba(#0D0D0D, 0.1);
+  }
+
+  hr {
+    border: none;
+    border-top: 2px solid rgba(#0D0D0D, 0.1);
+    margin: 2rem 0;
+  }
+}
+
+/* Table-specific styling */
+.ProseMirror {
+  table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+
+    td,
+    th {
+      min-width: 1em;
+      border: 2px solid #ced4da;
+      padding: 3px 5px;
+      vertical-align: top;
+      box-sizing: border-box;
+      position: relative;
+
+      > * {
+        margin-bottom: 0;
+      }
+    }
+
+    th {
+      font-weight: bold;
+      text-align: left;
+      background-color: #f1f3f5;
+    }
+
+    .selectedCell:after {
+      z-index: 2;
+      position: absolute;
+      content: "";
+      left: 0; right: 0; top: 0; bottom: 0;
+      background: rgba(200, 200, 255, 0.4);
+      pointer-events: none;
+    }
+
+    .column-resize-handle {
+      position: absolute;
+      right: -2px;
+      top: 0;
+      bottom: -2px;
+      width: 4px;
+      background-color: #adf;
+      pointer-events: none;
+    }
+  }
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.resize-cursor {
+  cursor: ew-resize;
+  cursor: col-resize;
+}
+</style>
