@@ -160,42 +160,7 @@ export default {
       content: `
         <p class="text-green-500">Begin editing here</p>
 
-        <h3>
-          Have you seen our tables? They are amazing!
-        </h3>
-        <ul>
-          <li>tables with rows, cells and headers (optional)</li>
-          <li>support for <code>colgroup</code> and <code>rowspan</code></li>
-          <li>and even resizable columns (optional)</li>
-        </ul>
-        <p>
-          Here is an example:
-        </p>
-        <table>
-          <tbody>
-            <tr>
-              <th>Name</th>
-              <th colspan="3">Description</th>
-            </tr>
-            <tr>
-              <td>Cyndi Lauper</td>
-              <td>singer</td>
-              <td>songwriter</td>
-              <td>actress</td>
-            </tr>
-            <tr>
-              <td>Philipp Kühn</td>
-              <td>designer</td>
-              <td>developer</td>
-              <td>maker</td>
-            </tr>
-            <tr>
-              <td>Hans Pagel</td>
-              <td>wrote this</td>
-              <td colspan="2">that’s it</td>
-            </tr>
-          </tbody>
-        </table>
+        
       `,
     })
   },
