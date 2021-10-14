@@ -1,109 +1,110 @@
 <template>
-<div class='bg-gray-100 grid grid-rows-2 place-items-center h-screen'>
-    <div class='mx-5 bg-gray-300 h-full w-4/5 p-2 row-span-2'>
-      <div v-if="editor" class='grid grid-flow-col'>
-        <div>
-          <button class="btn" @click="editor.chain().focus().toggleBold().run()" :class="{ 'is-active': editor.isActive('bold') }">
-            bold
-          </button>
-          <button class="btn" @click="editor.chain().focus().toggleItalic().run()" :class="{ 'is-active': editor.isActive('italic') }">
-            italic
-          </button>
-          <button class="btn" @click="editor.chain().focus().toggleStrike().run()" :class="{ 'is-active': editor.isActive('strike') }">
-            strike
-          </button>
-          <button class="btn" @click="editor.chain().focus().toggleCode().run()" :class="{ 'is-active': editor.isActive('code') }">
-            code
-          </button>
-          <button class="btn" @click="editor.chain().focus().unsetAllMarks().run()">
-            clear marks
-          </button>
-          <button class="btn" @click="editor.chain().focus().toggleCodeBlock().run()" :class="{ 'is-active': editor.isActive('codeBlock') }">
-            code block
-          </button>
-          <button class="btn" @click="editor.chain().focus().toggleBlockquote().run()" :class="{ 'is-active': editor.isActive('blockquote') }">
-            blockquote
-          </button>
-          <button class="btn" @click="editor.chain().focus().setHorizontalRule().run()">
-            horizontal rule
-          </button>
-          <button class="btn" @click="editor.chain().focus().setHardBreak().run()">
-            hard break
-          </button>
-          <button class="btn" @click="editor.chain().focus().undo().run()">
-            undo
-          </button>
-          <button class="btn" @click="editor.chain().focus().redo().run()">
-            redo
-          </button>
-        </div>
+<div class='bg-gray-100 invisible lg:visible lg:grid lg:grid-rows-2 lg:place-items-center lg:h-screen'>
+    <div class='invisible lg:visible mx-5 bg-gray-300 h-screen w-4/5 p-2 lg:grid lg:grid-rows-5 lg:row-span-2'>
+      <div v-if="editor">
+        <div class='bg-red-300 visible lg:visible lg:grid lg:grid-flow-col'>
+          <div >
+            <button class="btn btn-large" @click="editor.chain().focus().toggleBold().run()" :class="{ 'is-active': editor.isActive('bold') }">
+              bold
+            </button>
+            <button class="btn btn-large" @click="editor.chain().focus().toggleItalic().run()" :class="{ 'is-active': editor.isActive('italic') }">
+              italic
+            </button>
+            <button class="btn btn-large" @click="editor.chain().focus().toggleStrike().run()" :class="{ 'is-active': editor.isActive('strike') }">
+              strike
+            </button>
+            <button class="btn btn-large" @click="editor.chain().focus().toggleCode().run()" :class="{ 'is-active': editor.isActive('code') }">
+              code
+            </button>
+            <button class="btn btn-large" @click="editor.chain().focus().unsetAllMarks().run()">
+              clear marks
+            </button>
+            <button class="btn btn-large" @click="editor.chain().focus().toggleCodeBlock().run()" :class="{ 'is-active': editor.isActive('codeBlock') }">
+              code block
+            </button>
+            <button class="btn btn-large" @click="editor.chain().focus().toggleBlockquote().run()" :class="{ 'is-active': editor.isActive('blockquote') }">
+              blockquote
+            </button>
+            <button class="btn btn-large" @click="editor.chain().focus().setHorizontalRule().run()">
+              horizontal rule
+            </button>
+            <button class="btn btn-large" @click="editor.chain().focus().setHardBreak().run()">
+              hard break
+            </button>
+            <button class="btn btn-large" @click="editor.chain().focus().undo().run()">
+              undo
+            </button>
+            <button class="btn btn-large" @click="editor.chain().focus().redo().run()">
+              redo
+            </button>
+          </div>
 
-        <div>
-          <button class="btn" @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()">
-            Insert Table
-          </button>
-          <button class="btn" @click="editor.chain().focus().addColumnBefore().run()" :disabled="!editor.can().addColumnBefore()">
-            Add Column Before
-          </button>
-          <button class="btn" @click="editor.chain().focus().addColumnAfter().run()" :disabled="!editor.can().addColumnAfter()">
-            Add Column After
-          </button>
-          <button class="btn" @click="editor.chain().focus().deleteColumn().run()" :disabled="!editor.can().deleteColumn()">
-            Delete Column
-          </button>
+          <div>
+            <button class="btn btn-large" @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()">
+              Insert Table
+            </button>
+            <button class="btn btn-large" @click="editor.chain().focus().addColumnBefore().run()" :disabled="!editor.can().addColumnBefore()">
+              Add Column Before
+            </button>
+            <button class="btn btn-large" @click="editor.chain().focus().addColumnAfter().run()" :disabled="!editor.can().addColumnAfter()">
+              Add Column After
+            </button>
+            <button class="btn btn-large" @click="editor.chain().focus().deleteColumn().run()" :disabled="!editor.can().deleteColumn()">
+              Delete Column
+            </button>
 
-          <button class="btn" @click="editor.chain().focus().addRowBefore().run()" :disabled="!editor.can().addRowBefore()">
-            Add Row Before
-          </button>
-          <button class="btn" @click="editor.chain().focus().addRowAfter().run()" :disabled="!editor.can().addRowAfter()">
-            Add Row After
-          </button>
-          <button class="btn" @click="editor.chain().focus().deleteRow().run()" :disabled="!editor.can().deleteRow()">
-            Delete Row
-          </button>
+            <button class="btn btn-large" @click="editor.chain().focus().addRowBefore().run()" :disabled="!editor.can().addRowBefore()">
+              Add Row Before
+            </button>
+            <button class="btn btn-large" @click="editor.chain().focus().addRowAfter().run()" :disabled="!editor.can().addRowAfter()">
+              Add Row After
+            </button>
+            <button class="btn btn-large" @click="editor.chain().focus().deleteRow().run()" :disabled="!editor.can().deleteRow()">
+              Delete Row
+            </button>
 
-          <button class="btn" @click="editor.chain().focus().deleteTable().run()" :disabled="!editor.can().deleteTable()">
-            Delete Table
-          </button>
+            <button class="btn btn-large" @click="editor.chain().focus().deleteTable().run()" :disabled="!editor.can().deleteTable()">
+              Delete Table
+            </button>
 
-          <button class="btn" @click="editor.chain().focus().mergeCells().run()" :disabled="!editor.can().mergeCells()">
-            Merge Cells
-          </button>
-          <button class="btn" @click="editor.chain().focus().splitCell().run()" :disabled="!editor.can().splitCell()">
-            Split Cell
-          </button>
+            <button class="btn btn-large" @click="editor.chain().focus().mergeCells().run()" :disabled="!editor.can().mergeCells()">
+              Merge Cells
+            </button>
+            <button class="btn btn-large" @click="editor.chain().focus().splitCell().run()" :disabled="!editor.can().splitCell()">
+              Split Cell
+            </button>
 
-          <button class="btn" @click="editor.chain().focus().toggleHeaderColumn().run()" :disabled="!editor.can().toggleHeaderColumn()">
-            Toggle Header Column
-          </button>
-          <button class="btn" @click="editor.chain().focus().toggleHeaderRow().run()" :disabled="!editor.can().toggleHeaderRow()">
-            Toggle Header Row
-          </button>
-          <button class="btn" @click="editor.chain().focus().toggleHeaderCell().run()" :disabled="!editor.can().toggleHeaderCell()">
-            Toggle Header Cell
-          </button>
+            <button class="btn btn-large" @click="editor.chain().focus().toggleHeaderColumn().run()" :disabled="!editor.can().toggleHeaderColumn()">
+              Toggle Header Column
+            </button>
+            <button class="btn btn-large" @click="editor.chain().focus().toggleHeaderRow().run()" :disabled="!editor.can().toggleHeaderRow()">
+              Toggle Header Row
+            </button>
+            <button class="btn btn-large" @click="editor.chain().focus().toggleHeaderCell().run()" :disabled="!editor.can().toggleHeaderCell()">
+              Toggle Header Cell
+            </button>
 
-          <button class="btn" @click="editor.chain().focus().mergeOrSplit().run()" :disabled="!editor.can().mergeOrSplit()">
-            Merge Or Split
-          </button>
-          <button class="btn" @click="editor.chain().focus().setCellAttribute('backgroundColor', '#FAF594').run()" :disabled="!editor.can().setCellAttribute('backgroundColor', '#FAF594')">
-            Set Cell Attribute
-          </button>
-          <button class="btn" @click="editor.chain().focus().fixTables().run()" :disabled="!editor.can().fixTables()">
-            Fix Tables
-          </button>
+            <button class="btn btn-large" @click="editor.chain().focus().mergeOrSplit().run()" :disabled="!editor.can().mergeOrSplit()">
+              Merge Or Split
+            </button>
+            <button class="btn btn-large" @click="editor.chain().focus().setCellAttribute('backgroundColor', '#FAF594').run()" :disabled="!editor.can().setCellAttribute('backgroundColor', '#FAF594')">
+              Set Cell Attribute
+            </button>
+            <button class="btn btn-large" @click="editor.chain().focus().fixTables().run()" :disabled="!editor.can().fixTables()">
+              Fix Tables
+            </button>
 
-          <button class="btn" @click="editor.chain().focus().goToNextCell().run()" :disabled="!editor.can().goToNextCell()">
-            Next Cell
-          </button>
-          <button class="btn" @click="editor.chain().focus().goToPreviousCell().run()" :disabled="!editor.can().goToPreviousCell()">
-            Previous Cell
-          </button>
-
+            <button class="btn btn-large" @click="editor.chain().focus().goToNextCell().run()" :disabled="!editor.can().goToNextCell()">
+              Next Cell
+            </button>
+            <button class="btn btn-large" @click="editor.chain().focus().goToPreviousCell().run()" :disabled="!editor.can().goToPreviousCell()">
+              Previous Cell
+            </button>
+          </div>
         </div>
       </div>
 
-      <div class="w-full h-96 col-start-2 justify-center bg-pink-700 text-gray-800 italic mt-2 p-2 rounded row-span-full" >
+      <div class="visible w-full overflow-auto row-start-3 row-end-6 justify-center bg-pink-700 text-gray-800 italic mt-2 p-2 rounded row-span-full editor-div" >
         <editor-content class="bg-green-200 w-full h-full p-2 rounded justify-center" :editor="editor" />
       </div>
 
