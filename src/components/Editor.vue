@@ -52,59 +52,47 @@
           </div>
 
           <div>
-            <button class="btn btn-large inline table-add" @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-              </svg>
-
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-              </svg>
+            <button class="btn btn-large" title="Add Table" @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()">
+              <img class="w-6" src="../../images/insert_table.png" alt="insert table icon">
             </button>
 
-            <button class="btn btn-large" @click="editor.chain().focus().addColumnBefore().run()" :disabled="!editor.can().addColumnBefore()">
-              <img class="w-6" src="../../images/add_column.svg">Before
+            <button class="btn btn-large" title="Add Column Left" @click="editor.chain().focus().addColumnBefore().run()" :disabled="!editor.can().addColumnBefore()">
+              <img class="w-6" src="../../images/add_column_left.png" alt="add column before icon">
             </button>
 
-            <button class="btn btn-large" @click="editor.chain().focus().addColumnAfter().run()" :disabled="!editor.can().addColumnAfter()">
-              <img class="w-6" src="../../images/add_column.svg">After
+            <button class="btn btn-large" title="Add Column Right" @click="editor.chain().focus().addColumnAfter().run()" :disabled="!editor.can().addColumnAfter()">
+              <img class="w-6" src="../../images/add_column_right.png" alt="add column after icon">
             </button>
 
-            <button class="btn btn-large" @click="editor.chain().focus().deleteColumn().run()" :disabled="!editor.can().deleteColumn()">
-              <img class="w-6" src="../../images/delete_column.svg">
+            <button class="btn btn-large" title="Delete Column" @click="editor.chain().focus().deleteColumn().run()" :disabled="!editor.can().deleteColumn()">
+              <img class="w-6" src="../../images/delete_column.svg" alt="delete column icon">
             </button>
 
-            <button class="btn btn-large" @click="editor.chain().focus().addRowBefore().run()" :disabled="!editor.can().addRowBefore()">
-              <img class="w-6" src="../../images/add_row.svg">Before
+            <button class="btn btn-large" title="Add Row Above" @click="editor.chain().focus().addRowBefore().run()" :disabled="!editor.can().addRowBefore()">
+              <img class="w-6" src="../../images/add_row_above.png" alt="add row above icon">
             </button>
 
-            <button class="btn btn-large" @click="editor.chain().focus().addRowAfter().run()" :disabled="!editor.can().addRowAfter()">
-              <img class="w-6" src="../../images/add_row.svg">After
+            <button class="btn btn-large" title="Add Row Below" @click="editor.chain().focus().addRowAfter().run()" :disabled="!editor.can().addRowAfter()">
+              <img class="w-6" src="../../images/add_row_below.png" alt="add row below icon">
             </button>
 
-            <button class="btn btn-large" @click="editor.chain().focus().deleteRow().run()" :disabled="!editor.can().deleteRow()">
-              <img class="w-6" src="../../images/delete_row.svg">
+            <button class="btn btn-large" title="Delete Row" @click="editor.chain().focus().deleteRow().run()" :disabled="!editor.can().deleteRow()">
+              <img class="w-6" src="../../images/delete_row.svg" alt="delete row icon">
             </button>
 
-            <button class="btn btn-large table-delete" @click="editor.chain().focus().deleteTable().run()" :disabled="!editor.can().deleteTable()">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-              </svg>
-
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-              </svg>
+            <button class="btn btn-large table-delete" title="Delete Table" @click="editor.chain().focus().deleteTable().run()" :disabled="!editor.can().deleteTable()">
+              <img class="w-6" src="../../images/delete_table.png" alt="delete table icon">
             </button>
 
-            <button class="btn btn-large" @click="editor.chain().focus().mergeCells().run()" :disabled="!editor.can().mergeCells()">
-              Merge Cells
+            <button class="btn btn-large" title="Merge Cells" @click="editor.chain().focus().mergeCells().run()" :disabled="!editor.can().mergeCells()">
+              <img class="w-6" src="../../images/merge.png" alt="merge cells icon">
             </button>
 
-            <button class="btn btn-large" @click="editor.chain().focus().splitCell().run()" :disabled="!editor.can().splitCell()">
-              Split Cell
+            <button class="btn btn-large" title="Split Cell" @click="editor.chain().focus().splitCell().run()" :disabled="!editor.can().splitCell()">
+              <img class="w-6" src="../../images/split_cell.png" alt="split cell icon">
             </button>
 
-            <button class="btn btn-large" @click="editor.chain().focus().toggleHeaderColumn().run()" :disabled="!editor.can().toggleHeaderColumn()">
+            <!-- <button class="btn btn-large" @click="editor.chain().focus().toggleHeaderColumn().run()" :disabled="!editor.can().toggleHeaderColumn()">
               Toggle Header Column
             </button>
 
@@ -118,23 +106,23 @@
 
             <button class="btn btn-large" @click="editor.chain().focus().mergeOrSplit().run()" :disabled="!editor.can().mergeOrSplit()">
               Merge Or Split
-            </button>
+            </button> -->
 
-            <button class="btn btn-large" @click="editor.chain().focus().setCellAttribute('backgroundColor', '#FAF594').run()" :disabled="!editor.can().setCellAttribute('backgroundColor', '#FAF594')">
+            <!-- <button class="btn btn-large" @click="editor.chain().focus().setCellAttribute('backgroundColor', '#FAF594').run()" :disabled="!editor.can().setCellAttribute('backgroundColor', '#FAF594')">
               Set Cell Attribute
             </button>
 
             <button class="btn btn-large" @click="editor.chain().focus().fixTables().run()" :disabled="!editor.can().fixTables()">
               Fix Tables
-            </button>
+            </button> -->
 
-            <button class="btn btn-large previous" @click="editor.chain().focus().goToNextCell().run()" :disabled="!editor.can().goToNextCell()">
+            <button class="btn btn-large previous" title="Next Cell" @click="editor.chain().focus().goToNextCell().run()" :disabled="!editor.can().goToNextCell()">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </button>
 
-            <button class="btn btn-large next" @click="editor.chain().focus().goToPreviousCell().run()" :disabled="!editor.can().goToPreviousCell()">
+            <button class="btn btn-large next" title="Previous Cell" @click="editor.chain().focus().goToPreviousCell().run()" :disabled="!editor.can().goToPreviousCell()">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
