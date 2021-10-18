@@ -1,19 +1,19 @@
 <template>
-<div class='bg-gray-100 invisible lg:visible lg:grid lg:grid-rows-2 lg:place-items-center lg:h-screen'>
-    <div class='invisible lg:visible mx-5 bg-gray-300 h-screen w-4/5 p-2 lg:grid lg:grid-rows-5 lg:row-span-2'>
+<div class='bg-gray-100 visible lg:visible lg:grid lg:grid-rows-2 lg:place-items-center lg:h-screen'>
+    <div class='visible lg:visible mx-5 bg-gray-300 h-screen w-4/5 p-2 lg:grid lg:grid-rows-5 lg:row-span-2'>
       <div v-if="editor">
-        <div class='bg-red-300 visible lg:visible lg:grid lg:grid-flow-col'>
-          <div >
+        <div class='bg-red-300 visible lg:grid lg:grid-flow-col'>
+          <div>
             <button class="btn btn-large font-bold" title="Bold" @click="editor.chain().focus().toggleBold().run()" :class="{ 'is-active': editor.isActive('bold') }">
-             B
+             <img class="w-6" src="../../images/bold.png" alt="bold icon" title="Bold">
             </button>
 
             <button class="btn btn-large italic" title="Italic" @click="editor.chain().focus().toggleItalic().run()" :class="{ 'is-active': editor.isActive('italic') }">
-              I
+              <img class="w-6" src="../../images/italic-font.png" alt="italic icon">
             </button>
 
             <button class="btn btn-large line-through" title="Strikethrough" @click="editor.chain().focus().toggleStrike().run()" :class="{ 'is-active': editor.isActive('strike') }">
-              S
+              <img class="w-6" src="../../images/strikethrough.png" alt="strikethrough icon">
             </button>
 <!--
             <button class="btn btn-large" @click="editor.chain().focus().toggleCode().run()" :class="{ 'is-active': editor.isActive('code') }">
@@ -133,7 +133,10 @@
       </div>
 
       <div class="visible w-full overflow-auto row-start-3 row-end-6 justify-center bg-pink-700 text-gray-800 italic mt-2 p-2 rounded row-span-full editor-div" >
-        <editor-content class="bg-green-200 w-full h-full p-2 rounded justify-center" :editor="editor" />
+        <editor-content
+          class="bg-green-200 w-full h-full p-2 rounded justify-center"
+          :editor="editor"
+        />
       </div>
 
     </div>
@@ -207,7 +210,7 @@ export default {
 <style lang="scss">
 /* Basic editor styles */
 .ProseMirror {
-  margin: 1rem 0;
+  // margin: 1rem 0;
 
   > * + * {
     margin-top: 0.75em;
@@ -262,6 +265,10 @@ export default {
     border-top: 2px solid rgba(#0D0D0D, 0.1);
     margin: 2rem 0;
   }
+
+  min-height: 100%;
+  max-height: 100px;
+  overflow-y: scroll;
 }
 
 /* Table-specific styling */
