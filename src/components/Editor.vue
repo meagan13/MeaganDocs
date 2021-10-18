@@ -1,6 +1,6 @@
 <template>
-<div class='bg-gray-100 visible lg:visible lg:grid lg:grid-rows-2 lg:place-items-center lg:h-screen'>
-    <div class='visible lg:visible mx-5 bg-gray-300 h-screen w-4/5 p-2 lg:grid lg:grid-rows-6 lg:row-span-2'>
+<div class='bg-gray-100 grid place-items-center h-screen'>
+    <div class='mx-5 bg-gray-300 h-screen w-4/5 p-2 grid grid-rows-6'>
       <div v-if="editor">
         <div class='bg-red-300 visible lg:grid lg:grid-flow-col'>
           <div>
@@ -132,7 +132,7 @@
         </div>
       </div>
 
-      <div class="visible w-full overflow-auto row-start-3 lg:row-start-2 row-end-7 justify-center bg-pink-700 text-gray-800 italic mt-2 p-2 rounded row-span-full editor-div" >
+      <div class="w-full overflow-auto row-start-3 row-end-7 lg:row-start-2 justify-center bg-pink-700 text-gray-800 italic mt-2 p-2 rounded" >
         <editor-content
           class="bg-green-200 w-full h-full p-2 rounded justify-center"
           :editor="editor"
