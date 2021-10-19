@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-red-300 p-3 text-xl" id="nav">
+  <div class="bg-red-300 p-3 text-xl w-screen" id="nav">
       <router-link className="px-5" :to="{ name: 'Home' }">Home</router-link>
       <router-link className="px-5" to="/about">About</router-link>
       <router-link className="px-5" to="/editor">Editor</router-link>

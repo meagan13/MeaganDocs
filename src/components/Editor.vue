@@ -1,11 +1,11 @@
 <template>
-<div class='bg-gray-100 grid place-items-center h-screen'>
-    <div class='mx-5 bg-gray-300 h-screen w-4/5 p-2 grid grid-rows-6'>
-      <div v-if="editor">
-        <div class='bg-red-300 visible lg:grid lg:grid-flow-col'>
-          <div>
+<div class='bg-gray-100 h-screen w-screen justify-center p-0 mt-1'>
+    <div v-if="editor" class="w-full">
+      <div class='p-0 bg-gray-300 w-screen h-full place-content-center'>
+        <div class='bg-red-300 lg:p-2 lg:flex place-content-center'>
+          <div class='bg-red-400 flex content-center'>
             <button class="btn btn-large font-bold" title="Bold" @click="editor.chain().focus().toggleBold().run()" :class="{ 'is-active': editor.isActive('bold') }">
-             <img class="w-6" src="../../images/bold.png" alt="bold icon" title="Bold">
+            <img class="w-6" src="../../images/bold.png" alt="bold icon" title="Bold">
             </button>
 
             <button class="btn btn-large italic" title="Italic" @click="editor.chain().focus().toggleItalic().run()" :class="{ 'is-active': editor.isActive('italic') }">
@@ -51,7 +51,7 @@
             </button>
           </div>
 
-          <div>
+          <div class="bg-red-400 flex content-center">
             <button class="btn btn-large" title="Add Table" @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()">
               <img class="w-6" src="../../images/insert_table.png" alt="insert table icon">
             </button>
@@ -92,30 +92,6 @@
               <img class="w-6" src="../../images/split_cell.png" alt="split cell icon">
             </button>
 
-            <!-- <button class="btn btn-large" @click="editor.chain().focus().toggleHeaderColumn().run()" :disabled="!editor.can().toggleHeaderColumn()">
-              Toggle Header Column
-            </button>
-
-            <button class="btn btn-large" @click="editor.chain().focus().toggleHeaderRow().run()" :disabled="!editor.can().toggleHeaderRow()">
-              Toggle Header Row
-            </button>
-
-            <button class="btn btn-large" @click="editor.chain().focus().toggleHeaderCell().run()" :disabled="!editor.can().toggleHeaderCell()">
-              Toggle Header Cell
-            </button>
-
-            <button class="btn btn-large" @click="editor.chain().focus().mergeOrSplit().run()" :disabled="!editor.can().mergeOrSplit()">
-              Merge Or Split
-            </button> -->
-
-            <!-- <button class="btn btn-large" @click="editor.chain().focus().setCellAttribute('backgroundColor', '#FAF594').run()" :disabled="!editor.can().setCellAttribute('backgroundColor', '#FAF594')">
-              Set Cell Attribute
-            </button>
-
-            <button class="btn btn-large" @click="editor.chain().focus().fixTables().run()" :disabled="!editor.can().fixTables()">
-              Fix Tables
-            </button> -->
-
             <button class="btn btn-large previous" title="Next Cell" @click="editor.chain().focus().goToNextCell().run()" :disabled="!editor.can().goToNextCell()">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -127,21 +103,22 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
             </button>
-
           </div>
+
         </div>
       </div>
+    </div>
 
-      <div class="w-full overflow-auto row-start-3 row-end-7 lg:row-start-2 justify-center bg-pink-700 text-gray-800 italic mt-2 p-2 rounded" >
+    <div v-if="editor" class="bg-blue-200 p-5 lg:grid grid-cols-12 h-screen">
+      <div class="overflow-auto col-start-2 col-end-12 h-5/6 bg-pink-700 text-gray-800 italic mt-2 p-2 rounded" >
         <editor-content
-          class="bg-green-200 w-full h-full p-2 rounded justify-center"
+          class="bg-green-200 w-full h-full rounded justify-center"
           :editor="editor"
         />
       </div>
-
     </div>
 
-  </div>
+</div>
 </template>
 
 <script>
@@ -267,7 +244,7 @@ export default {
   }
 
   min-height: 100%;
-  max-height: 100px;
+  max-height: 100%;
   overflow-y: scroll;
 }
 

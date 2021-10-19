@@ -4,10 +4,10 @@
 
 @layer components {
     .btn {
-        @apply m-1 p-1 bg-indigo-300 rounded-lg text-xs
+        @apply p-1 bg-red-300 text-xs flex-1
     }
 
     .btn-large {
-        @apply lg:visible lg:text-lg lg:px-2 lg:transform lg:hover:translate-y-0.5 lg:border lg:border-gray-100 lg:uppercase
+        @apply lg:visible lg:text-lg lg:px-2 lg:transform lg:hover:translate-y-0.5 lg:uppercase
     }
 }
