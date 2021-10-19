@@ -15,10 +15,6 @@
             <button class="btn btn-large line-through" title="Strikethrough" @click="editor.chain().focus().toggleStrike().run()" :class="{ 'is-active': editor.isActive('strike') }">
               <img class="w-6" src="../../images/strikethrough.png" alt="strikethrough icon">
             </button>
-<!--
-            <button class="btn btn-large" @click="editor.chain().focus().toggleCode().run()" :class="{ 'is-active': editor.isActive('code') }">
-              code
-            </button> -->
 
             <button class="btn btn-large" @click="editor.chain().focus().unsetAllMarks().run()">
               <img class="w-6" src="../../images/clear-format.png" alt="clear formatting icon" title="Clear Formatting">
@@ -110,7 +106,7 @@
     </div>
 
     <div v-if="editor" class="bg-blue-200 p-5 lg:grid grid-cols-12 h-screen">
-      <div class="overflow-auto col-start-2 col-end-12 h-5/6 bg-pink-700 text-gray-800 italic p-2 rounded" >
+      <div class="overflow-auto col-start-2 col-end-12 h-5/6 bg-pink-700 text-gray-800 p-2 rounded" >
         <editor-content
           class="bg-green-200 w-full h-full rounded justify-center"
           :editor="editor"
@@ -246,6 +242,7 @@ export default {
   min-height: 100%;
   max-height: 100%;
   overflow-y: scroll;
+  padding: 1%;
 }
 
 /* Table-specific styling */
