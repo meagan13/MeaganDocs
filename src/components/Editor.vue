@@ -110,7 +110,7 @@
     </div>
 
     <div v-if="editor" class="bg-blue-200 p-5 lg:grid grid-cols-12 h-screen">
-      <div class="overflow-auto col-start-2 col-end-12 h-5/6 bg-pink-700 text-gray-800 italic mt-2 p-2 rounded" >
+      <div class="overflow-auto col-start-2 col-end-12 h-5/6 bg-pink-700 text-gray-800 italic p-2 rounded" >
         <editor-content
           class="bg-green-200 w-full h-full rounded justify-center"
           :editor="editor"
