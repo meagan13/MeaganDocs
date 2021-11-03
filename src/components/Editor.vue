@@ -4,7 +4,7 @@
     <div v-if="editor" class="w-full">
       <div class='p-0 bg-gray-300 w-screen h-full place-content-center content-center justify-center'>
         <div class='bg-gray-300 p-2 flex flex-wrap place-content-center content-center justify-center'>
-          <div class='lg:bg-gray-400 flex content-center place-content-center justify-center w-full lg:w-auto'>
+          <div class='lg:bg-gray-400 flex content-center place-content-center justify-center pt-2 lg:p-0 w-full lg:w-auto'>
             <button class="btn btn-large font-bold" title="Bold" @click="editor.chain().focus().toggleBold().run()" :class="{ 'is-active': editor.isActive('bold') }">
             <img class="w-6" src="../../images/bold.png" alt="bold icon" title="Bold">
             </button>
@@ -44,7 +44,7 @@
             <img class="w-6 " src="../../images/vertical-line.png" alt="divider line icon">
           </div>
 
-          <div class="lg:bg-gray-400 flex content-center w-full lg:w-auto justify-center">
+          <div class="lg:bg-gray-400 pt-2 lg:p-0 flex content-center w-full lg:w-auto justify-center">
             <button class="btn btn-large" title="Add Table" @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()">
               <img class="w-6" src="../../images/insert_table.png" alt="insert table icon">
             </button>
@@ -102,7 +102,7 @@
             <img class="w-6 " src="../../images/vertical-line.png" alt="divider line icon">
           </div>
 
-          <div class="flex content-center">
+          <div class="flex content-center pt-2 lg:p-0">
             <button class="btn btn-large" title="Undo" @click="editor.chain().focus().undo().run()">
               <img class="w-6" src="../../images/undo_round.png" alt="undo arrow icon">
             </button>
