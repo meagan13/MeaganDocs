@@ -1,8 +1,8 @@
 <template>
-  <div class="bg-red-300 p-3 text-xl w-screen" id="nav">
-      <router-link className="px-5" :to="{ name: 'Home' }">Home</router-link>
-      <router-link className="px-5" to="/about">About</router-link>
-      <router-link className="px-5" to="/editor">Editor</router-link>
+  <div class="bg-green-800 p-3 text-xl w-screen" id="nav">
+      <!-- <router-link className="px-5 text-gray-200" :to="{ name: 'Home' }">Home</router-link>
+      <router-link className="px-5 text-gray-200" to="/about">About</router-link> -->
+      <router-link className="px-5 text-gray-200" to="/editor">Datagrove Editor</router-link>
   </div>
 
   <router-view />

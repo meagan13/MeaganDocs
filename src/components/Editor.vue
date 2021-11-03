@@ -2,8 +2,8 @@
 <div class='bg-gray-100 h-screen w-screen justify-center p-0 mt-1'>
     <div v-if="editor" class="w-full">
       <div class='p-0 bg-gray-300 w-screen h-full place-content-center'>
-        <div class='bg-red-300 lg:p-2 lg:flex place-content-center'>
-          <div class='bg-red-400 flex content-center'>
+        <div class='bg-gray-300 lg:p-2 lg:flex place-content-center content-center'>
+          <div class='bg-gray-400 flex content-center'>
             <button class="btn btn-large font-bold" title="Bold" @click="editor.chain().focus().toggleBold().run()" :class="{ 'is-active': editor.isActive('bold') }">
             <img class="w-6" src="../../images/bold.png" alt="bold icon" title="Bold">
             </button>
@@ -47,7 +47,11 @@
             </button>
           </div>
 
-          <div class="bg-red-400 flex content-center">
+          <div class="invisible lg:visible lg:flex lg:content-center">
+            <img class="w-6 " src="../../images/vertical-line.png" alt="divider line icon">
+          </div>
+
+          <div class="bg-gray-400 flex content-center">
             <button class="btn btn-large" title="Add Table" @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()">
               <img class="w-6" src="../../images/insert_table.png" alt="insert table icon">
             </button>
@@ -105,10 +109,10 @@
       </div>
     </div>
 
-    <div v-if="editor" class="bg-blue-200 p-5 lg:grid grid-cols-12 h-screen">
-      <div class="overflow-auto col-start-2 col-end-12 h-5/6 bg-pink-700 text-gray-800 p-2 rounded" >
+    <div v-if="editor" class="bg-gray-200 p-5 lg:grid grid-cols-12 h-screen">
+      <div class="overflow-auto col-start-2 col-end-12 h-5/6 bg-green-800 text-gray-800 p-2 rounded" >
         <editor-content
-          class="bg-green-200 w-full h-full rounded justify-center"
+          class="bg-gray-300 w-full h-full rounded justify-center"
           :editor="editor"
         />
       </div>
