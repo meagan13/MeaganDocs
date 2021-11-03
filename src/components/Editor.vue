@@ -1,9 +1,9 @@
 <template>
 <div class='bg-gray-100 h-screen w-screen justify-center p-0 mt-1'>
     <div v-if="editor" class="w-full">
-      <div class='p-0 bg-gray-300 w-screen h-full place-content-center'>
-        <div class='bg-gray-300 lg:p-2 lg:flex place-content-center content-center'>
-          <div class='bg-gray-400 flex content-center'>
+      <div class='p-0 bg-gray-300 w-screen h-full place-content-center content-center justify-center'>
+        <div class='bg-gray-300 p-2 flex flex-wrap place-content-center content-center justify-center'>
+          <div class='md:bg-gray-400 flex content-center place-content-center w-11/12 max-w-3xl justify-center md:w-auto'>
             <button class="btn btn-large font-bold" title="Bold" @click="editor.chain().focus().toggleBold().run()" :class="{ 'is-active': editor.isActive('bold') }">
             <img class="w-6" src="../../images/bold.png" alt="bold icon" title="Bold">
             </button>
@@ -37,15 +37,13 @@
             <button class="btn btn-large" title="Add Line Break" @click="editor.chain().focus().setHardBreak().run()">
               <img class="w-6" src="../../images/break.png" alt="line break icon">
             </button>
-
-
           </div>
 
-          <div class="invisible lg:visible lg:flex lg:content-center">
+          <div class="hidden invisible md:visible md:flex md:content-center">
             <img class="w-6 " src="../../images/vertical-line.png" alt="divider line icon">
           </div>
 
-          <div class="bg-gray-400 flex content-center">
+          <div class="md:bg-gray-400 flex content-center w-11/12 max-w-3xl md:w-auto justify-center">
             <button class="btn btn-large" title="Add Table" @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()">
               <img class="w-6" src="../../images/insert_table.png" alt="insert table icon">
             </button>
@@ -99,13 +97,13 @@
             </button>
           </div>
 
-          <div class="invisible lg:visible lg:flex lg:content-center">
+          <div class="hidden invisible md:visible md:flex md:content-center">
             <img class="w-6 " src="../../images/vertical-line.png" alt="divider line icon">
           </div>
 
-          <div>
+          <div class="flex content-center">
             <button class="btn btn-large" title="Undo" @click="editor.chain().focus().undo().run()">
-              <img class="w-6" src="../../images/undo-arrow.png" alt="undo arrow icon">
+              <img class="w-6" src="../../images/undo_round.png" alt="undo arrow icon">
             </button>
 
             <button class="btn btn-large" title="Redo" @click="editor.chain().focus().redo().run()">
@@ -117,7 +115,7 @@
       </div>
     </div>
 
-    <div v-if="editor" class="bg-gray-200 p-5 lg:grid grid-cols-12 h-screen">
+    <div v-if="editor" class="bg-gray-200 p-5 md:grid grid-cols-12 h-screen">
       <div class="overflow-auto col-start-2 col-end-12 h-5/6 bg-green-800 text-gray-800 p-2 rounded" >
         <editor-content
           class="bg-gray-300 w-full h-full rounded justify-center"
