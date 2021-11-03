@@ -38,13 +38,7 @@
               <img class="w-6" src="../../images/break.png" alt="line break icon">
             </button>
 
-            <button class="btn btn-large" title="Undo" @click="editor.chain().focus().undo().run()">
-              <img class="w-6" src="../../images/undo-arrow.png" alt="undo arrow icon">
-            </button>
 
-            <button class="btn btn-large" title="Redo" @click="editor.chain().focus().redo().run()">
-              <img class="w-6" src="../../images/redo.png" alt="redo arrow icon">
-            </button>
           </div>
 
           <div class="invisible lg:visible lg:flex lg:content-center">
@@ -102,6 +96,20 @@
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
+            </button>
+          </div>
+
+          <div class="invisible lg:visible lg:flex lg:content-center">
+            <img class="w-6 " src="../../images/vertical-line.png" alt="divider line icon">
+          </div>
+
+          <div>
+            <button class="btn btn-large" title="Undo" @click="editor.chain().focus().undo().run()">
+              <img class="w-6" src="../../images/undo-arrow.png" alt="undo arrow icon">
+            </button>
+
+            <button class="btn btn-large" title="Redo" @click="editor.chain().focus().redo().run()">
+              <img class="w-6" src="../../images/redo.png" alt="redo arrow icon">
             </button>
           </div>
 
