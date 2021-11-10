@@ -1,212 +1,388 @@
 <template>
-
-
-
-<div class='bg-gray-100 h-screen w-screen justify-center p-0 mt-1'>
+  <div class="bg-gray-100 h-screen w-screen justify-center p-0 mt-1">
+    <bubble-menu :editor="editor" v-if="editor">
+      <button
+        @click="editor.chain().focus().toggleBold().run()"
+        :class="{ 'is-active': editor.isActive('bold') }"
+      >bold</button>
+      <button
+        @click="editor.chain().focus().toggleItalic().run()"
+        :class="{ 'is-active': editor.isActive('italic') }"
+      >italic</button>
+      <button
+        @click="editor.chain().focus().toggleStrike().run()"
+        :class="{ 'is-active': editor.isActive('strike') }"
+      >strike</button>
+    </bubble-menu>
     <div v-if="editor" class="w-full">
-      <div class='p-0 bg-gray-300 w-screen h-full place-content-center content-center justify-center'>
-        <div class='bg-gray-300 p-2 flex lg:flex-wrap place-content-center content-center justify-center'>
-          <div class='lg:bg-gray-400 flex content-center place-content-center justify-center pt-2 lg:p-0 w-full lg:w-auto'
+      <div
+        class="p-0 bg-gray-300 w-screen h-full place-content-center content-center justify-center"
+      >
+        <div
+          class="bg-gray-300 p-2 flex lg:flex-wrap place-content-center content-center justify-center"
+        >
+          <div
+            class="lg:bg-gray-400 flex content-center place-content-center justify-center pt-2 lg:p-0 w-full lg:w-auto"
             @mouseover="hover = true"
             @mouseleave="hover = false"
           >
+            <Menu as="div" class="relative inline-block text-right mx-1 lg:hidden">
+              <div>
+                <MenuButton
+                  class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-green-800"
+                >
+                  Edit Text
+                  <ChevronDownIcon class="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+                </MenuButton>
+              </div>
 
-          <Menu as="div" class="relative inline-block text-right mx-1 lg:hidden">
-            <div>
-              <MenuButton class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-green-800">
-                Edit Text
-                <ChevronDownIcon class="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
-              </MenuButton>
-            </div>
-
-            <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
-              <MenuItems class="origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                <div class="py-1">
-
-                  <!-- <MenuItem v-slot="{ active }">
+              <transition
+                enter-active-class="transition ease-out duration-100"
+                enter-from-class="transform opacity-0 scale-95"
+                enter-to-class="transform opacity-100 scale-100"
+                leave-active-class="transition ease-in duration-75"
+                leave-from-class="transform opacity-100 scale-100"
+                leave-to-class="transform opacity-0 scale-95"
+              >
+                <MenuItems
+                  class="origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                >
+                  <div class="py-1">
+                    <!-- <MenuItem v-slot="{ active }">
                     <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">Works?</a>
-                  </MenuItem> -->
+                    </MenuItem>-->
 
+                    <MenuItem v-slot="{ active }">
+                      <a
+                        href="#"
+                        @click="editor.chain().focus().toggleBold().run()"
+                        :class="[{ 'is-active': editor.isActive('bold') }, 'block px-4 py-2 text-sm']"
+                      >Bold</a>
+                    </MenuItem>
+
+                    <MenuItem v-slot="{ active }">
+                      <a
+                        href="#"
+                        @click="editor.chain().focus().toggleItalic().run()"
+                        :class="[{ 'is-active': editor.isActive('italic') }, 'block px-4 py-2 text-sm']"
+                      >Italic</a>
+                    </MenuItem>
+
+                    <MenuItem v-slot="{ active }">
+                      <a
+                        href="#"
+                        @click="editor.chain().focus().toggleItalic().run()"
+                        :class="[{ 'is-active': editor.isActive('italic') }, 'block px-4 py-2 text-sm']"
+                      >Italic</a>
+                    </MenuItem>
+
+                    <!--
                   <MenuItem v-slot="{ active }">
-                    <a href="#" @click="editor.chain().focus().toggleBold().run()" :class="[{ 'is-active': editor.isActive('bold') }, 'block px-4 py-2 text-sm']">Bold</a>
+
                   </MenuItem>
 
                   <MenuItem v-slot="{ active }">
-                    <a href="#" @click="editor.chain().focus().toggleItalic().run()" :class="[{ 'is-active': editor.isActive('italic') }, 'block px-4 py-2 text-sm']">Italic</a>
-                  </MenuItem>
 
-                  <MenuItem v-slot="{ active }">
-                    <a href="#" @click="editor.chain().focus().toggleItalic().run()" :class="[{ 'is-active': editor.isActive('italic') }, 'block px-4 py-2 text-sm']">Italic</a>
-                  </MenuItem>
+                    </MenuItem>-->
+                  </div>
+                </MenuItems>
+              </transition>
+            </Menu>
 
+            <Menu as="div" class="relative inline-block text-right mx-1 lg:hidden">
+              <div>
+                <MenuButton
+                  class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-green-800"
+                >
+                  Edit Table
+                  <ChevronDownIcon class="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+                </MenuButton>
+              </div>
 
+              <transition
+                enter-active-class="transition ease-out duration-100"
+                enter-from-class="transform opacity-0 scale-95"
+                enter-to-class="transform opacity-100 scale-100"
+                leave-active-class="transition ease-in duration-75"
+                leave-from-class="transform opacity-100 scale-100"
+                leave-to-class="transform opacity-0 scale-95"
+              >
+                <MenuItems
+                  class="origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                >
+                  <div class="py-1">
+                    <MenuItem v-slot="{ active }">
+                      <button
+                        @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()"
+                      >Add Table</button>
+                    </MenuItem>
+                  </div>
+                </MenuItems>
+              </transition>
+            </Menu>
 
-<!--
-                  <MenuItem v-slot="{ active }">
-
-                  </MenuItem>
-
-                  <MenuItem v-slot="{ active }">
-
-                  </MenuItem> -->
-
-
-
-                </div>
-              </MenuItems>
-            </transition>
-          </Menu>
-
-          <Menu as="div" class="relative inline-block text-right mx-1 lg:hidden">
-            <div>
-              <MenuButton class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-green-800">
-                Edit Table
-                <ChevronDownIcon class="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
-              </MenuButton>
-            </div>
-
-            <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
-              <MenuItems class="origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                <div class="py-1">
-
-                  <MenuItem v-slot="{ active }">
-                    <button @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()">Add Table</button>
-                  </MenuItem>
-
-                </div>
-              </MenuItems>
-            </transition>
-          </Menu>
-
-            <div class='hidden lg:block'>
-
-              <button class="btn btn-large font-bold" title="Bold" @click="editor.chain().focus().toggleBold().run()" :class="{ 'is-active': editor.isActive('bold') }">
-                <img class="w-6" src="../../images/bold.png" alt="bold icon" title="Bold">
+            <div class="hidden lg:block">
+              <button
+                class="btn btn-large font-bold"
+                title="Bold"
+                @click="editor.chain().focus().toggleBold().run()"
+                :class="{ 'is-active': editor.isActive('bold') }"
+              >
+                <img class="w-6" src="../../images/bold.png" alt="bold icon" title="Bold" />
               </button>
 
-              <button class="btn btn-large italic" title="Italic" @click="editor.chain().focus().toggleItalic().run()" :class="{ 'is-active': editor.isActive('italic') }">
-                <img class="w-6" src="../../images/italic-font.png" alt="italic icon">
+              <button
+                class="btn btn-large italic"
+                title="Italic"
+                @click="editor.chain().focus().toggleItalic().run()"
+                :class="{ 'is-active': editor.isActive('italic') }"
+              >
+                <img class="w-6" src="../../images/italic-font.png" alt="italic icon" />
               </button>
 
-              <button class="btn btn-large line-through" title="Strikethrough" @click="editor.chain().focus().toggleStrike().run()" :class="{ 'is-active': editor.isActive('strike') }">
-                <img class="w-6" src="../../images/strikethrough.png" alt="strikethrough icon">
+              <button
+                class="btn btn-large line-through"
+                title="Strikethrough"
+                @click="editor.chain().focus().toggleStrike().run()"
+                :class="{ 'is-active': editor.isActive('strike') }"
+              >
+                <img class="w-6" src="../../images/strikethrough.png" alt="strikethrough icon" />
               </button>
 
               <button class="btn btn-large" @click="editor.chain().focus().unsetAllMarks().run()">
-                <img class="w-6" src="../../images/clear-format.png" alt="clear formatting icon" title="Clear Formatting">
+                <img
+                  class="w-6"
+                  src="../../images/clear-format.png"
+                  alt="clear formatting icon"
+                  title="Clear Formatting"
+                />
               </button>
 
-              <button class="btn btn-large" title="Code Block" @click="editor.chain().focus().toggleCodeBlock().run()" :class="{ 'is-active': editor.isActive('codeBlock') }">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+              <button
+                class="btn btn-large"
+                title="Code Block"
+                @click="editor.chain().focus().toggleCodeBlock().run()"
+                :class="{ 'is-active': editor.isActive('codeBlock') }"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                  />
                 </svg>
               </button>
 
-              <button class="btn btn-large" @click="editor.chain().focus().toggleBlockquote().run()" :class="{ 'is-active': editor.isActive('blockquote') }">
-                <img class="w-6" src="../../images/quote.png" alt="blockquote icon" title="Blockquote">
+              <button
+                class="btn btn-large"
+                @click="editor.chain().focus().toggleBlockquote().run()"
+                :class="{ 'is-active': editor.isActive('blockquote') }"
+              >
+                <img
+                  class="w-6"
+                  src="../../images/quote.png"
+                  alt="blockquote icon"
+                  title="Blockquote"
+                />
               </button>
 
-              <button class="btn btn-large" title="Add Horizontal Line" @click="editor.chain().focus().setHorizontalRule().run()">
-                <img class="w-6" src="../../images/line.png" alt="add line icon">
+              <button
+                class="btn btn-large"
+                title="Add Horizontal Line"
+                @click="editor.chain().focus().setHorizontalRule().run()"
+              >
+                <img class="w-6" src="../../images/line.png" alt="add line icon" />
               </button>
 
-              <button class="btn btn-large" title="Add Line Break" @click="editor.chain().focus().setHardBreak().run()">
-                <img class="w-6" src="../../images/break.png" alt="line break icon">
+              <button
+                class="btn btn-large"
+                title="Add Line Break"
+                @click="editor.chain().focus().setHardBreak().run()"
+              >
+                <img class="w-6" src="../../images/break.png" alt="line break icon" />
               </button>
             </div>
-
           </div>
 
           <div class="hidden invisible lg:visible lg:flex lg:content-center">
-            <img class="w-6 " src="../../images/vertical-line.png" alt="divider line icon">
+            <img class="w-6" src="../../images/vertical-line.png" alt="divider line icon" />
           </div>
 
-          <div class="hidden lg:block lg:bg-gray-400 pt-2 lg:p-0 flex content-center w-full lg:w-auto justify-center">
-            <button class="btn btn-large" title="Add Table" @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()">
-              <img class="w-6" src="../../images/insert_table.png" alt="insert table icon">
+          <div
+            class="hidden lg:block lg:bg-gray-400 pt-2 lg:p-0 flex content-center w-full lg:w-auto justify-center"
+          >
+            <button
+              class="btn btn-large"
+              title="Add Table"
+              @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()"
+            >
+              <img class="w-6" src="../../images/insert_table.png" alt="insert table icon" />
             </button>
 
-            <button class="btn btn-large" title="Add Column Left" @click="editor.chain().focus().addColumnBefore().run()" :disabled="!editor.can().addColumnBefore()">
-              <img class="w-6" src="../../images/add_column_left.png" alt="add column before icon">
+            <button
+              class="btn btn-large"
+              title="Add Column Left"
+              @click="editor.chain().focus().addColumnBefore().run()"
+              :disabled="!editor.can().addColumnBefore()"
+            >
+              <img class="w-6" src="../../images/add_column_left.png" alt="add column before icon" />
             </button>
 
-            <button class="btn btn-large" title="Add Column Right" @click="editor.chain().focus().addColumnAfter().run()" :disabled="!editor.can().addColumnAfter()">
-              <img class="w-6" src="../../images/add_column_right.png" alt="add column after icon">
+            <button
+              class="btn btn-large"
+              title="Add Column Right"
+              @click="editor.chain().focus().addColumnAfter().run()"
+              :disabled="!editor.can().addColumnAfter()"
+            >
+              <img class="w-6" src="../../images/add_column_right.png" alt="add column after icon" />
             </button>
 
-            <button class="btn btn-large" title="Delete Column" @click="editor.chain().focus().deleteColumn().run()" :disabled="!editor.can().deleteColumn()">
-              <img class="w-6" src="../../images/delete_column.svg" alt="delete column icon">
+            <button
+              class="btn btn-large"
+              title="Delete Column"
+              @click="editor.chain().focus().deleteColumn().run()"
+              :disabled="!editor.can().deleteColumn()"
+            >
+              <img class="w-6" src="../../images/delete_column.svg" alt="delete column icon" />
             </button>
 
-            <button class="btn btn-large" title="Add Row Above" @click="editor.chain().focus().addRowBefore().run()" :disabled="!editor.can().addRowBefore()">
-              <img class="w-6" src="../../images/add_row_above.png" alt="add row above icon">
+            <button
+              class="btn btn-large"
+              title="Add Row Above"
+              @click="editor.chain().focus().addRowBefore().run()"
+              :disabled="!editor.can().addRowBefore()"
+            >
+              <img class="w-6" src="../../images/add_row_above.png" alt="add row above icon" />
             </button>
 
-            <button class="btn btn-large" title="Add Row Below" @click="editor.chain().focus().addRowAfter().run()" :disabled="!editor.can().addRowAfter()">
-              <img class="w-6" src="../../images/add_row_below.png" alt="add row below icon">
+            <button
+              class="btn btn-large"
+              title="Add Row Below"
+              @click="editor.chain().focus().addRowAfter().run()"
+              :disabled="!editor.can().addRowAfter()"
+            >
+              <img class="w-6" src="../../images/add_row_below.png" alt="add row below icon" />
             </button>
 
-            <button class="btn btn-large" title="Delete Row" @click="editor.chain().focus().deleteRow().run()" :disabled="!editor.can().deleteRow()">
-              <img class="w-6" src="../../images/delete_row.svg" alt="delete row icon">
+            <button
+              class="btn btn-large"
+              title="Delete Row"
+              @click="editor.chain().focus().deleteRow().run()"
+              :disabled="!editor.can().deleteRow()"
+            >
+              <img class="w-6" src="../../images/delete_row.svg" alt="delete row icon" />
             </button>
 
-            <button class="btn btn-large table-delete" title="Delete Table" @click="editor.chain().focus().deleteTable().run()" :disabled="!editor.can().deleteTable()">
-              <img class="w-6" src="../../images/delete_table.png" alt="delete table icon">
+            <button
+              class="btn btn-large table-delete"
+              title="Delete Table"
+              @click="editor.chain().focus().deleteTable().run()"
+              :disabled="!editor.can().deleteTable()"
+            >
+              <img class="w-6" src="../../images/delete_table.png" alt="delete table icon" />
             </button>
 
-            <button class="btn btn-large" title="Merge Cells" @click="editor.chain().focus().mergeCells().run()" :disabled="!editor.can().mergeCells()">
-              <img class="w-6" src="../../images/merge.png" alt="merge cells icon">
+            <button
+              class="btn btn-large"
+              title="Merge Cells"
+              @click="editor.chain().focus().mergeCells().run()"
+              :disabled="!editor.can().mergeCells()"
+            >
+              <img class="w-6" src="../../images/merge.png" alt="merge cells icon" />
             </button>
 
-            <button class="btn btn-large" title="Split Cell" @click="editor.chain().focus().splitCell().run()" :disabled="!editor.can().splitCell()">
-              <img class="w-6" src="../../images/split_cell.png" alt="split cell icon">
+            <button
+              class="btn btn-large"
+              title="Split Cell"
+              @click="editor.chain().focus().splitCell().run()"
+              :disabled="!editor.can().splitCell()"
+            >
+              <img class="w-6" src="../../images/split_cell.png" alt="split cell icon" />
             </button>
 
-            <button class="btn btn-large previous" title="Next Cell" @click="editor.chain().focus().goToNextCell().run()" :disabled="!editor.can().goToNextCell()">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            <button
+              class="btn btn-large previous"
+              title="Next Cell"
+              @click="editor.chain().focus().goToNextCell().run()"
+              :disabled="!editor.can().goToNextCell()"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                />
               </svg>
             </button>
 
-            <button class="btn btn-large next" title="Previous Cell" @click="editor.chain().focus().goToPreviousCell().run()" :disabled="!editor.can().goToPreviousCell()">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            <button
+              class="btn btn-large next"
+              title="Previous Cell"
+              @click="editor.chain().focus().goToPreviousCell().run()"
+              :disabled="!editor.can().goToPreviousCell()"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                />
               </svg>
             </button>
           </div>
 
           <div class="hidden invisible lg:visible lg:flex lg:content-center">
-            <img class="w-6 " src="../../images/vertical-line.png" alt="divider line icon">
+            <img class="w-6" src="../../images/vertical-line.png" alt="divider line icon" />
           </div>
 
           <div class="flex content-center pt-2 lg:p-0">
             <button class="btn btn-large" title="Undo" @click="editor.chain().focus().undo().run()">
-              <img class="w-6" src="../../images/undo_round.png" alt="undo arrow icon">
+              <img class="w-6" src="../../images/undo_round.png" alt="undo arrow icon" />
             </button>
 
             <button class="btn btn-large" title="Redo" @click="editor.chain().focus().redo().run()">
-              <img class="w-6" src="../../images/redo.png" alt="redo arrow icon">
+              <img class="w-6" src="../../images/redo.png" alt="redo arrow icon" />
             </button>
           </div>
-
         </div>
       </div>
     </div>
-
+    <div>
+      <editor-content :editor="editor" />
+    </div>
     <div v-if="editor" class="bg-gray-200 p-5 lg:grid grid-cols-12 h-screen">
-      <div class="overflow-auto col-start-2 col-end-12 h-5/6 bg-green-800 text-gray-800 p-2 rounded" >
-        <editor-content
-          class="bg-gray-300 w-full h-full rounded justify-center"
-          :editor="editor"
-        />
+      <div
+        class="overflow-auto col-start-2 col-end-12 h-5/6 bg-green-800 text-gray-800 p-2 rounded"
+      >
+        <editor-content class="bg-gray-300 w-full h-full rounded justify-center" :editor="editor" />
       </div>
     </div>
-
-</div>
+  </div>
 </template>
 
 <script>
-import { Editor, EditorContent } from '@tiptap/vue-3'
+import { Editor, EditorContent, BubbleMenu } from '@tiptap/vue-3'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import { ChevronDownIcon } from '@heroicons/vue/solid'
 import StarterKit from '@tiptap/starter-kit'
@@ -214,6 +390,7 @@ import Table from '@tiptap/extension-table'
 import TableRow from '@tiptap/extension-table-row'
 import TableCell from '@tiptap/extension-table-cell'
 import TableHeader from '@tiptap/extension-table-header'
+
 
 const CustomTableCell = TableCell.extend({
   addAttributes() {
@@ -245,6 +422,7 @@ export default {
     MenuItem,
     MenuItems,
     ChevronDownIcon,
+    BubbleMenu
   },
 
   data() {
@@ -266,7 +444,7 @@ export default {
         // TableCell,
         CustomTableCell,
       ],
-      content:'',
+      content: '',
     })
   },
 
@@ -305,9 +483,9 @@ export default {
   }
 
   pre {
-    background: #0D0D0D;
-    color: #FFF;
-    font-family: 'JetBrainsMono', monospace;
+    background: #0d0d0d;
+    color: #fff;
+    font-family: "JetBrainsMono", monospace;
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
 
@@ -326,12 +504,12 @@ export default {
 
   blockquote {
     padding-left: 1rem;
-    border-left: 2px solid rgba(#0D0D0D, 0.1);
+    border-left: 2px solid rgba(#0d0d0d, 0.1);
   }
 
   hr {
     border: none;
-    border-top: 2px solid rgba(#0D0D0D, 0.1);
+    border-top: 2px solid rgba(#0d0d0d, 0.1);
     margin: 2rem 0;
   }
 
@@ -374,7 +552,10 @@ export default {
       z-index: 2;
       position: absolute;
       content: "";
-      left: 0; right: 0; top: 0; bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
       background: rgba(200, 200, 255, 0.4);
       pointer-events: none;
     }
