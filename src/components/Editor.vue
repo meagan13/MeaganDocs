@@ -1,19 +1,36 @@
 <template>
   <div class="bg-gray-100 h-screen w-screen justify-center p-0 mt-1">
-    <bubble-menu :editor="editor" v-if="editor">
-      <button
-        @click="editor.chain().focus().toggleBold().run()"
-        :class="{ 'is-active': editor.isActive('bold') }"
-      >bold</button>
-      <button
-        @click="editor.chain().focus().toggleItalic().run()"
-        :class="{ 'is-active': editor.isActive('italic') }"
-      >italic</button>
-      <button
-        @click="editor.chain().focus().toggleStrike().run()"
-        :class="{ 'is-active': editor.isActive('strike') }"
-      >strike</button>
-    </bubble-menu>
+
+      <button class='lg:hidden'
+        @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()"
+      >
+        <img class="w-6" src="../../images/insert_table.png" alt="insert table icon" />
+      </button>
+
+      <bubble-menu class='lg:hidden' :editor="editor" v-if="editor">
+        <button
+          @click="editor.chain().focus().toggleBold().run()"
+          :class="[{ 'is-active': editor.isActive('bold') }, 'p-1 bg-gray-300 border border-gray-500']"
+        >
+          <img class="w-6" src="../../images/bold.png" alt="bold icon" title="Bold" />
+        </button>
+
+        <button
+          @click="editor.chain().focus().toggleItalic().run()"
+          :class="[{ 'is-active': editor.isActive('italic') }, 'p-1 bg-gray-300 border border-gray-500']"
+        >
+          <img class="w-6" src="../../images/italic-font.png" alt="italic icon" title="Italic" />
+        </button>
+
+        <button
+          @click="editor.chain().focus().toggleStrike().run()"
+          :class="[{ 'is-active': editor.isActive('strike') }, 'p-1 bg-gray-300 border border-gray-500']"
+        >
+          <img class="w-6" src="../../images/strikethrough.png" alt="strikethrough icon" title="Strikethrough" />
+        </button>
+      </bubble-menu>
+
+
     <div v-if="editor" class="w-full">
       <div
         class="p-0 bg-gray-300 w-screen h-full place-content-center content-center justify-center"
@@ -26,7 +43,7 @@
             @mouseover="hover = true"
             @mouseleave="hover = false"
           >
-            <Menu as="div" class="relative inline-block text-right mx-1 lg:hidden">
+            <!-- <Menu as="div" class="relative inline-block text-right mx-1 lg:hidden">
               <div>
                 <MenuButton
                   class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-green-800"
@@ -48,9 +65,9 @@
                   class="origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                 >
                   <div class="py-1">
-                    <!-- <MenuItem v-slot="{ active }">
+                    <MenuItem v-slot="{ active }">
                     <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">Works?</a>
-                    </MenuItem>-->
+                    </MenuItem>
 
                     <MenuItem v-slot="{ active }">
                       <a
@@ -76,50 +93,20 @@
                       >Italic</a>
                     </MenuItem>
 
-                    <!--
-                  <MenuItem v-slot="{ active }">
-
-                  </MenuItem>
-
-                  <MenuItem v-slot="{ active }">
-
-                    </MenuItem>-->
                   </div>
                 </MenuItems>
               </transition>
-            </Menu>
+            </Menu> -->
 
-            <Menu as="div" class="relative inline-block text-right mx-1 lg:hidden">
-              <div>
-                <MenuButton
-                  class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-green-800"
-                >
-                  Edit Table
-                  <ChevronDownIcon class="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
-                </MenuButton>
-              </div>
-
-              <transition
-                enter-active-class="transition ease-out duration-100"
-                enter-from-class="transform opacity-0 scale-95"
-                enter-to-class="transform opacity-100 scale-100"
-                leave-active-class="transition ease-in duration-75"
-                leave-from-class="transform opacity-100 scale-100"
-                leave-to-class="transform opacity-0 scale-95"
+            <!-- <div class='lg:hidden'>
+              <button
+                class="btn btn-large"
+                title="Add Table"
+                @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()"
               >
-                <MenuItems
-                  class="origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-                >
-                  <div class="py-1">
-                    <MenuItem v-slot="{ active }">
-                      <button
-                        @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()"
-                      >Add Table</button>
-                    </MenuItem>
-                  </div>
-                </MenuItems>
-              </transition>
-            </Menu>
+                <img class="w-6" src="../../images/insert_table.png" alt="insert table icon" />
+              </button>
+            </div> -->
 
             <div class="hidden lg:block">
               <button
