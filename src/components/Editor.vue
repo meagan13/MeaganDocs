@@ -523,6 +523,7 @@ export default {
       vertical-align: top;
       box-sizing: border-box;
       position: relative;
+      background-color: whitesmoke;
 
       > * {
         margin-bottom: 0;
@@ -532,7 +533,8 @@ export default {
     th {
       font-weight: bold;
       text-align: left;
-      background-color: #f1f3f5;
+      // background-color: #f1f3f5;
+      background-color: rgb(209, 250, 229)
     }
 
     .selectedCell:after {
