@@ -1,45 +1,41 @@
 <template>
   <div class="bg-gray-100 h-screen w-screen justify-center p-0 mt-1">
 
-      <button class='lg:hidden'
+      <!-- <button class='lg:hidden'
         @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()"
       >
         <img class="w-6" src="../../images/insert_table.png" alt="insert table icon" />
+      </button> -->
+
+    <bubble-menu class='lg:hidden' :editor="editor" v-if="editor">
+      <button
+        @click="editor.chain().focus().toggleBold().run()"
+        :class="[{ 'is-active': editor.isActive('bold') }, 'p-1 bg-gray-300 border border-gray-500']"
+      >
+        <img class="w-6" src="../../images/bold.png" alt="bold icon" title="Bold" />
       </button>
 
-      <bubble-menu class='lg:hidden' :editor="editor" v-if="editor">
-        <button
-          @click="editor.chain().focus().toggleBold().run()"
-          :class="[{ 'is-active': editor.isActive('bold') }, 'p-1 bg-gray-300 border border-gray-500']"
-        >
-          <img class="w-6" src="../../images/bold.png" alt="bold icon" title="Bold" />
-        </button>
+      <button
+        @click="editor.chain().focus().toggleItalic().run()"
+        :class="[{ 'is-active': editor.isActive('italic') }, 'p-1 bg-gray-300 border border-gray-500']"
+      >
+        <img class="w-6" src="../../images/italic-font.png" alt="italic icon" title="Italicsssssss" />
+      </button>
 
-        <button
-          @click="editor.chain().focus().toggleItalic().run()"
-          :class="[{ 'is-active': editor.isActive('italic') }, 'p-1 bg-gray-300 border border-gray-500']"
-        >
-          <img class="w-6" src="../../images/italic-font.png" alt="italic icon" title="Italic" />
-        </button>
-
-        <button
-          @click="editor.chain().focus().toggleStrike().run()"
-          :class="[{ 'is-active': editor.isActive('strike') }, 'p-1 bg-gray-300 border border-gray-500']"
-        >
-          <img class="w-6" src="../../images/strikethrough.png" alt="strikethrough icon" title="Strikethrough" />
-        </button>
-      </bubble-menu>
+      <button
+        @click="editor.chain().focus().toggleStrike().run()"
+        :class="[{ 'is-active': editor.isActive('strike') }, 'p-1 bg-gray-300 border border-gray-500']"
+      >
+        <img class="w-6" src="../../images/strikethrough.png" alt="strikethrough icon" title="Strikethrough" />
+      </button>
+    </bubble-menu>
 
 
     <div v-if="editor" class="w-full">
-      <div
-        class="p-0 bg-gray-300 w-screen h-full place-content-center content-center justify-center"
-      >
-        <div
-          class="bg-gray-300 p-2 flex lg:flex-wrap place-content-center content-center justify-center"
-        >
+      <div class="p-0 bg-gray-300 w-screen h-full place-content-center content-center justify-center">
+        <div class="bg-gray-300 p-2 lg:flex lg:flex-wrap place-content-center content-center justify-center">
           <div
-            class="lg:bg-gray-400 flex content-center place-content-center justify-center pt-2 lg:p-0 w-full lg:w-auto"
+            class="lg:bg-gray-400 lg:flex content-center place-content-center justify-center pt-2 lg:p-0 w-full lg:w-auto"
             @mouseover="hover = true"
             @mouseleave="hover = false"
           >
@@ -108,7 +104,7 @@
               </button>
             </div> -->
 
-            <div class="hidden lg:block">
+            <div class="lg:block">
               <button
                 class="btn btn-large font-bold"
                 title="Bold"
@@ -198,12 +194,12 @@
             </div>
           </div>
 
-          <div class="hidden invisible lg:visible lg:flex lg:content-center">
+          <div class="invisible lg:visible lg:flex lg:content-center">
             <img class="w-6" src="../../images/vertical-line.png" alt="divider line icon" />
           </div>
 
           <div
-            class="hidden lg:block lg:bg-gray-400 pt-2 lg:p-0 flex content-center w-full lg:w-auto justify-center"
+            class="lg:bg-gray-400 pt-2 lg:p-0 lg:flex content-center w-full lg:w-auto justify-center"
           >
             <button
               class="btn btn-large"
@@ -339,11 +335,11 @@
             </button>
           </div>
 
-          <div class="hidden invisible lg:visible lg:flex lg:content-center">
+          <div class="invisible lg:visible lg:flex lg:content-center">
             <img class="w-6" src="../../images/vertical-line.png" alt="divider line icon" />
           </div>
 
-          <div class="flex content-center pt-2 lg:p-0">
+          <div class="lg:flex content-center pt-2 lg:p-0">
             <button class="btn btn-large" title="Undo" @click="editor.chain().focus().undo().run()">
               <img class="w-6" src="../../images/undo_round.png" alt="undo arrow icon" />
             </button>
@@ -355,9 +351,11 @@
         </div>
       </div>
     </div>
+
     <div>
       <editor-content :editor="editor" />
     </div>
+
     <div v-if="editor" class="bg-gray-200 p-5 lg:grid grid-cols-12 h-screen">
       <div
         class="overflow-auto col-start-2 col-end-12 h-5/6 bg-green-800 text-gray-800 p-2 rounded"
@@ -365,6 +363,7 @@
         <editor-content class="bg-gray-300 w-full h-full rounded justify-center" :editor="editor" />
       </div>
     </div>
+
   </div>
 </template>
 
