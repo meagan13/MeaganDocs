@@ -4,38 +4,38 @@
       <!-- <button class='lg:hidden'
         @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()"
       >
-        <img class="w-6" src="../../images/insert_table.png" alt="insert table icon" />
+        <img class="w-4 lg:w-6" src="../../images/insert_table.png" alt="insert table icon" />
       </button> -->
 
-    <bubble-menu class='lg:hidden' :editor="editor" v-if="editor">
+    <bubble-menu class='findme lg:hidden' :editor="editor" v-if="editor">
       <button
         @click="editor.chain().focus().toggleBold().run()"
         :class="[{ 'is-active': editor.isActive('bold') }, 'p-1 bg-gray-300 border border-gray-500']"
       >
-        <img class="w-6" src="../../images/bold.png" alt="bold icon" title="Bold" />
+        <img class="w-4 lg:w-6" src="../../images/bold.png" alt="bold icon" title="Bold" />
       </button>
 
       <button
         @click="editor.chain().focus().toggleItalic().run()"
         :class="[{ 'is-active': editor.isActive('italic') }, 'p-1 bg-gray-300 border border-gray-500']"
       >
-        <img class="w-6" src="../../images/italic-font.png" alt="italic icon" title="Italicsssssss" />
+        <img class="w-4 lg:w-6" src="../../images/italic-font.png" alt="italic icon" title="Italicsssssss" />
       </button>
 
       <button
         @click="editor.chain().focus().toggleStrike().run()"
         :class="[{ 'is-active': editor.isActive('strike') }, 'p-1 bg-gray-300 border border-gray-500']"
       >
-        <img class="w-6" src="../../images/strikethrough.png" alt="strikethrough icon" title="Strikethrough" />
+        <img class="w-4 lg:w-6" src="../../images/strikethrough.png" alt="strikethrough icon" title="Strikethrough" />
       </button>
     </bubble-menu>
 
 
     <div v-if="editor" class="w-full">
       <div class="p-0 bg-gray-300 w-screen h-full place-content-center content-center justify-center">
-        <div class="bg-gray-300 p-2 lg:flex lg:flex-wrap place-content-center content-center justify-center">
+        <div class="findme w-full bg-gray-300 lg:p-2 flex flex-wrap  lg:flex-wrap place-content-center content-center justify-center">
           <div
-            class="lg:bg-gray-400 lg:flex content-center place-content-center justify-center pt-2 lg:p-0 w-full lg:w-auto"
+            class="whereareyou lg:bg-gray-400 lg:flex content-center place-content-center justify-center pt-2 lg:p-0 max-w-1/4 lg:w-auto"
             @mouseover="hover = true"
             @mouseleave="hover = false"
           >
@@ -100,7 +100,7 @@
                 title="Add Table"
                 @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()"
               >
-                <img class="w-6" src="../../images/insert_table.png" alt="insert table icon" />
+                <img class="w-4 lg:w-6" src="../../images/insert_table.png" alt="insert table icon" />
               </button>
             </div> -->
 
@@ -111,7 +111,7 @@
                 @click="editor.chain().focus().toggleBold().run()"
                 :class="{ 'is-active': editor.isActive('bold') }"
               >
-                <img class="w-6" src="../../images/bold.png" alt="bold icon" title="Bold" />
+                <img class="w-4 lg:w-6" src="../../images/bold.png" alt="bold icon" title="Bold" />
               </button>
 
               <button
@@ -120,7 +120,7 @@
                 @click="editor.chain().focus().toggleItalic().run()"
                 :class="{ 'is-active': editor.isActive('italic') }"
               >
-                <img class="w-6" src="../../images/italic-font.png" alt="italic icon" />
+                <img class="w-4 lg:w-6" src="../../images/italic-font.png" alt="italic icon" />
               </button>
 
               <button
@@ -129,12 +129,12 @@
                 @click="editor.chain().focus().toggleStrike().run()"
                 :class="{ 'is-active': editor.isActive('strike') }"
               >
-                <img class="w-6" src="../../images/strikethrough.png" alt="strikethrough icon" />
+                <img class="w-4 lg:w-6" src="../../images/strikethrough.png" alt="strikethrough icon" />
               </button>
 
               <button class="btn btn-large" @click="editor.chain().focus().unsetAllMarks().run()">
                 <img
-                  class="w-6"
+                  class="w-4 lg:w-6"
                   src="../../images/clear-format.png"
                   alt="clear formatting icon"
                   title="Clear Formatting"
@@ -149,7 +149,7 @@
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6"
+                  class="h-6 w-4 lg:w-6"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -169,7 +169,7 @@
                 :class="{ 'is-active': editor.isActive('blockquote') }"
               >
                 <img
-                  class="w-6"
+                  class="w-4 lg:w-6"
                   src="../../images/quote.png"
                   alt="blockquote icon"
                   title="Blockquote"
@@ -181,7 +181,7 @@
                 title="Add Horizontal Line"
                 @click="editor.chain().focus().setHorizontalRule().run()"
               >
-                <img class="w-6" src="../../images/line.png" alt="add line icon" />
+                <img class="w-4 lg:w-6" src="../../images/line.png" alt="add line icon" />
               </button>
 
               <button
@@ -189,24 +189,24 @@
                 title="Add Line Break"
                 @click="editor.chain().focus().setHardBreak().run()"
               >
-                <img class="w-6" src="../../images/break.png" alt="line break icon" />
+                <img class="w-4 lg:w-6" src="../../images/break.png" alt="line break icon" />
               </button>
             </div>
           </div>
 
           <div class="invisible lg:visible lg:flex lg:content-center">
-            <img class="w-6" src="../../images/vertical-line.png" alt="divider line icon" />
+            <img class="w-4 lg:w-6" src="../../images/vertical-line.png" alt="divider line icon" />
           </div>
 
           <div
-            class="lg:bg-gray-400 pt-2 lg:p-0 lg:flex content-center w-full lg:w-auto justify-center"
+            class="lg:bg-gray-400 pt-2 lg:p-0 lg:flex content-center max-w-1/4 lg:w-auto justify-center"
           >
             <button
               class="btn btn-large"
               title="Add Table"
               @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()"
             >
-              <img class="w-6" src="../../images/insert_table.png" alt="insert table icon" />
+              <img class="w-4 lg:w-6" src="../../images/insert_table.png" alt="insert table icon" />
             </button>
 
             <button
@@ -215,7 +215,7 @@
               @click="editor.chain().focus().addColumnBefore().run()"
               :disabled="!editor.can().addColumnBefore()"
             >
-              <img class="w-6" src="../../images/add_column_left.png" alt="add column before icon" />
+              <img class="w-4 lg:w-6" src="../../images/add_column_left.png" alt="add column before icon" />
             </button>
 
             <button
@@ -224,7 +224,7 @@
               @click="editor.chain().focus().addColumnAfter().run()"
               :disabled="!editor.can().addColumnAfter()"
             >
-              <img class="w-6" src="../../images/add_column_right.png" alt="add column after icon" />
+              <img class="w-4 lg:w-6" src="../../images/add_column_right.png" alt="add column after icon" />
             </button>
 
             <button
@@ -233,7 +233,7 @@
               @click="editor.chain().focus().deleteColumn().run()"
               :disabled="!editor.can().deleteColumn()"
             >
-              <img class="w-6" src="../../images/delete_column.svg" alt="delete column icon" />
+              <img class="w-4 lg:w-6" src="../../images/delete_column.svg" alt="delete column icon" />
             </button>
 
             <button
@@ -242,7 +242,7 @@
               @click="editor.chain().focus().addRowBefore().run()"
               :disabled="!editor.can().addRowBefore()"
             >
-              <img class="w-6" src="../../images/add_row_above.png" alt="add row above icon" />
+              <img class="w-4 lg:w-6" src="../../images/add_row_above.png" alt="add row above icon" />
             </button>
 
             <button
@@ -251,7 +251,7 @@
               @click="editor.chain().focus().addRowAfter().run()"
               :disabled="!editor.can().addRowAfter()"
             >
-              <img class="w-6" src="../../images/add_row_below.png" alt="add row below icon" />
+              <img class="w-4 lg:w-6" src="../../images/add_row_below.png" alt="add row below icon" />
             </button>
 
             <button
@@ -260,7 +260,7 @@
               @click="editor.chain().focus().deleteRow().run()"
               :disabled="!editor.can().deleteRow()"
             >
-              <img class="w-6" src="../../images/delete_row.svg" alt="delete row icon" />
+              <img class="w-4 lg:w-6" src="../../images/delete_row.svg" alt="delete row icon" />
             </button>
 
             <button
@@ -269,7 +269,7 @@
               @click="editor.chain().focus().deleteTable().run()"
               :disabled="!editor.can().deleteTable()"
             >
-              <img class="w-6" src="../../images/delete_table.png" alt="delete table icon" />
+              <img class="w-4 lg:w-6" src="../../images/delete_table.png" alt="delete table icon" />
             </button>
 
             <button
@@ -278,7 +278,7 @@
               @click="editor.chain().focus().mergeCells().run()"
               :disabled="!editor.can().mergeCells()"
             >
-              <img class="w-6" src="../../images/merge.png" alt="merge cells icon" />
+              <img class="w-4 lg:w-6" src="../../images/merge.png" alt="merge cells icon" />
             </button>
 
             <button
@@ -287,7 +287,7 @@
               @click="editor.chain().focus().splitCell().run()"
               :disabled="!editor.can().splitCell()"
             >
-              <img class="w-6" src="../../images/split_cell.png" alt="split cell icon" />
+              <img class="w-4 lg:w-6" src="../../images/split_cell.png" alt="split cell icon" />
             </button>
 
             <button
@@ -298,7 +298,7 @@
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
+                class="h-6 w-4 lg:w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -320,7 +320,7 @@
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
+                class="h-6 w-4 lg:w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -336,16 +336,16 @@
           </div>
 
           <div class="invisible lg:visible lg:flex lg:content-center">
-            <img class="w-6" src="../../images/vertical-line.png" alt="divider line icon" />
+            <img class="w-4 lg:w-6" src="../../images/vertical-line.png" alt="divider line icon" />
           </div>
 
-          <div class="lg:flex content-center pt-2 lg:p-0">
+          <div class="max-w-1/4 lg:w-auto lg:flex content-center pt-2 lg:p-0">
             <button class="btn btn-large" title="Undo" @click="editor.chain().focus().undo().run()">
-              <img class="w-6" src="../../images/undo_round.png" alt="undo arrow icon" />
+              <img class="w-4 lg:w-6" src="../../images/undo_round.png" alt="undo arrow icon" />
             </button>
 
             <button class="btn btn-large" title="Redo" @click="editor.chain().focus().redo().run()">
-              <img class="w-6" src="../../images/redo.png" alt="redo arrow icon" />
+              <img class="w-4 lg:w-6" src="../../images/redo.png" alt="redo arrow icon" />
             </button>
           </div>
         </div>
