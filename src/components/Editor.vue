@@ -33,9 +33,9 @@
 
     <div v-if="editor" class="w-full">
       <div class="p-0 bg-gray-300 w-screen h-full place-content-center content-center justify-center">
-        <div class="findme w-full bg-gray-300 lg:p-2 flex flex-wrap  lg:flex-wrap place-content-center content-center justify-center">
+        <div class="findme w-full bg-gray-300 lg:p-2 flex flex-wrap place-content-center items-center content-center justify-center">
           <div
-            class="whereareyou lg:bg-gray-400 lg:flex content-center place-content-center justify-center pt-2 lg:p-0 max-w-1/4 lg:w-auto"
+            class=" lg:flex content-center place-content-center justify-center lg:p-0 max-w-1/4 lg:w-auto"
             @mouseover="hover = true"
             @mouseleave="hover = false"
           >
@@ -199,7 +199,7 @@
           </div>
 
           <div
-            class="lg:bg-gray-400 pt-2 lg:p-0 lg:flex content-center max-w-1/4 lg:w-auto justify-center"
+            class="lg:p-0 lg:flex content-center max-w-1/4 lg:w-auto justify-center"
           >
             <button
               class="btn btn-large"
@@ -339,7 +339,7 @@
             <img class="w-4 lg:w-6" src="../../images/vertical-line.png" alt="divider line icon" />
           </div>
 
-          <div class="max-w-1/4 lg:w-auto lg:flex content-center pt-2 lg:p-0">
+          <div class="max-w-1/4 lg:w-auto lg:flex content-center lg:p-0">
             <button class="btn btn-large" title="Undo" @click="editor.chain().focus().undo().run()">
               <img class="w-4 lg:w-6" src="../../images/undo_round.png" alt="undo arrow icon" />
             </button>
