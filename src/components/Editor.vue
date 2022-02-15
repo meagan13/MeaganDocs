@@ -1,13 +1,12 @@
 <template>
   <div class="bg-gray-100 h-screen w-screen justify-center p-0 mt-1">
-
-      <!-- <button class='lg:hidden'
+    <!-- <button class='lg:hidden'
         @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()"
       >
         <img class="w-4 lg:w-6" src="../../images/insert_table.png" alt="insert table icon" />
-      </button> -->
+    </button>-->
 
-    <bubble-menu class='findme lg:hidden' :editor="editor" v-if="editor">
+    <bubble-menu class="findme lg:hidden" :editor="editor" v-if="editor">
       <button
         @click="editor.chain().focus().toggleBold().run()"
         :class="[{ 'is-active': editor.isActive('bold') }, 'p-1 bg-gray-300 border border-gray-500']"
@@ -19,23 +18,36 @@
         @click="editor.chain().focus().toggleItalic().run()"
         :class="[{ 'is-active': editor.isActive('italic') }, 'p-1 bg-gray-300 border border-gray-500']"
       >
-        <img class="w-4 lg:w-6" src="../../images/italic-font.png" alt="italic icon" title="Italicsssssss" />
+        <img
+          class="w-4 lg:w-6"
+          src="../../images/italic-font.png"
+          alt="italic icon"
+          title="Italicsssssss"
+        />
       </button>
 
       <button
         @click="editor.chain().focus().toggleStrike().run()"
         :class="[{ 'is-active': editor.isActive('strike') }, 'p-1 bg-gray-300 border border-gray-500']"
       >
-        <img class="w-4 lg:w-6" src="../../images/strikethrough.png" alt="strikethrough icon" title="Strikethrough" />
+        <img
+          class="w-4 lg:w-6"
+          src="../../images/strikethrough.png"
+          alt="strikethrough icon"
+          title="Strikethrough"
+        />
       </button>
     </bubble-menu>
 
-
     <div v-if="editor" class="w-full">
-      <div class="p-0 bg-gray-300 w-screen h-full place-content-center content-center justify-center">
-        <div class="findme w-full bg-gray-300 lg:p-2 flex flex-wrap place-content-center items-center content-center justify-center">
+      <div
+        class="p-0 bg-gray-300 w-screen h-full place-content-center content-center justify-center"
+      >
+        <div
+          class="findme w-full bg-gray-300 lg:p-2 flex flex-wrap place-content-center items-center content-center justify-center"
+        >
           <div
-            class=" lg:flex content-center place-content-center justify-center lg:p-0 max-w-1/4 lg:w-auto"
+            class="lg:flex content-center place-content-center justify-center lg:p-0 max-w-1/4 lg:w-auto"
             @mouseover="hover = true"
             @mouseleave="hover = false"
           >
@@ -92,7 +104,7 @@
                   </div>
                 </MenuItems>
               </transition>
-            </Menu> -->
+            </Menu>-->
 
             <!-- <div class='lg:hidden'>
               <button
@@ -102,7 +114,7 @@
               >
                 <img class="w-4 lg:w-6" src="../../images/insert_table.png" alt="insert table icon" />
               </button>
-            </div> -->
+            </div>-->
 
             <div class="lg:block">
               <button
@@ -129,7 +141,11 @@
                 @click="editor.chain().focus().toggleStrike().run()"
                 :class="{ 'is-active': editor.isActive('strike') }"
               >
-                <img class="w-4 lg:w-6" src="../../images/strikethrough.png" alt="strikethrough icon" />
+                <img
+                  class="w-4 lg:w-6"
+                  src="../../images/strikethrough.png"
+                  alt="strikethrough icon"
+                />
               </button>
 
               <button class="btn btn-large" @click="editor.chain().focus().unsetAllMarks().run()">
@@ -198,9 +214,7 @@
             <img class="w-4 lg:w-6" src="../../images/vertical-line.png" alt="divider line icon" />
           </div>
 
-          <div
-            class="lg:p-0 lg:flex content-center max-w-1/4 lg:w-auto justify-center"
-          >
+          <div class="lg:p-0 lg:flex content-center max-w-1/4 lg:w-auto justify-center">
             <button
               class="btn btn-large"
               title="Add Table"
@@ -215,7 +229,11 @@
               @click="editor.chain().focus().addColumnBefore().run()"
               :disabled="!editor.can().addColumnBefore()"
             >
-              <img class="w-4 lg:w-6" src="../../images/add_column_left.png" alt="add column before icon" />
+              <img
+                class="w-4 lg:w-6"
+                src="../../images/add_column_left.png"
+                alt="add column before icon"
+              />
             </button>
 
             <button
@@ -224,7 +242,11 @@
               @click="editor.chain().focus().addColumnAfter().run()"
               :disabled="!editor.can().addColumnAfter()"
             >
-              <img class="w-4 lg:w-6" src="../../images/add_column_right.png" alt="add column after icon" />
+              <img
+                class="w-4 lg:w-6"
+                src="../../images/add_column_right.png"
+                alt="add column after icon"
+              />
             </button>
 
             <button
@@ -363,11 +385,11 @@
         <editor-content class="bg-gray-300 w-full h-full rounded justify-center" :editor="editor" />
       </div>
     </div>
-
   </div>
 </template>
 
-<script>
+<script setup lang="ts" >
+import { ref, reactive, onUnmounted } from 'vue'
 import { Editor, EditorContent, BubbleMenu } from '@tiptap/vue-3'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import { ChevronDownIcon } from '@heroicons/vue/solid'
@@ -400,44 +422,23 @@ const CustomTableCell = TableCell.extend({
 })
 
 
-export default {
-  components: {
-    EditorContent,
-    Menu,
-    MenuButton,
-    MenuItem,
-    MenuItems,
-    ChevronDownIcon,
-    BubbleMenu
-  },
+const hover = ref(false)
+const editor = new Editor({
+  extensions: [
+    StarterKit,
+    Table.configure({
+      resizable: true,
+    }),
+    TableRow,
+    TableHeader,
+    // TableCell,
+    CustomTableCell,
+  ],
+  content: '',
+})
 
-  data() {
-    return {
-      editor: null,
-      hover: false,
-    }
-  },
+onUnmounted(() => editor.destroy())
 
-  mounted() {
-    this.editor = new Editor({
-      extensions: [
-        StarterKit,
-        Table.configure({
-          resizable: true,
-        }),
-        TableRow,
-        TableHeader,
-        // TableCell,
-        CustomTableCell,
-      ],
-      content: '',
-    })
-  },
-
-  beforeUnmount() {
-    this.editor.destroy()
-  },
-}
 </script>
 
 <style lang="scss">
@@ -533,7 +534,7 @@ export default {
       font-weight: bold;
       text-align: left;
       // background-color: #f1f3f5;
-      background-color: rgb(209, 250, 229)
+      background-color: rgb(209, 250, 229);
     }
 
     .selectedCell:after {
