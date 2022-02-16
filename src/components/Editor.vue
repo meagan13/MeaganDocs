@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-100 h-screen w-screen justify-center p-0 mt-1">
+  <div @keyup.50="findName" class="bg-gray-100 h-screen w-screen justify-center p-0 mt-1">
     <!-- <button class='lg:hidden'
         @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()"
       >
@@ -389,7 +389,7 @@
 </template>
 
 <script setup lang="ts" >
-import { ref, reactive, onUnmounted } from 'vue'
+import { ref, reactive, onUnmounted, onMounted } from 'vue'
 import { Editor, EditorContent, BubbleMenu } from '@tiptap/vue-3'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import { ChevronDownIcon } from '@heroicons/vue/solid'
@@ -398,6 +398,7 @@ import Table from '@tiptap/extension-table'
 import TableRow from '@tiptap/extension-table-row'
 import TableCell from '@tiptap/extension-table-cell'
 import TableHeader from '@tiptap/extension-table-header'
+import { findDir } from '@vue/compiler-core'
 
 
 const CustomTableCell = TableCell.extend({
@@ -421,8 +422,8 @@ const CustomTableCell = TableCell.extend({
   },
 })
 
-
 const hover = ref(false)
+
 const editor = new Editor({
   extensions: [
     StarterKit,
@@ -436,6 +437,7 @@ const editor = new Editor({
   ],
   content: '',
 })
+
 
 onUnmounted(() => editor.destroy())
 

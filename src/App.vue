@@ -20,6 +20,7 @@
     name: 'app',
     components: {
       'Navigation': Navigation
-    }
+    },
+    
   }
 </script>
