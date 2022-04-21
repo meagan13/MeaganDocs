@@ -378,17 +378,31 @@
       <editor-content :editor="editor" />
     </div>
 
-    <div v-if="editor" class="bg-gray-200 p-5 lg:grid grid-cols-12 h-screen">
+    <div v-if="editor" class="bg-gray-200 p-5 lg:grid grid-cols-12">
       <div
-        class="overflow-auto col-start-2 col-end-12 h-5/6 bg-green-800 text-gray-800 p-2 rounded"
+        class="overflow-auto col-start-2 col-end-11 bg-green-800 text-gray-800 p-2 rounded"
       >
         <editor-content class="bg-gray-300 w-full h-full rounded justify-center" :editor="editor" />
+      </div>
+
+      <div class="inline-block align-middle col-start-11 col-end-12 bg-red-600">
+        <button @click="showTextEdit">
+          <img src="../../images/text-format.png"/>
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts" >
+  // export default {
+  //   data() {
+  //     return {
+  //       showTextEdit: false
+  //     }
+  //   }
+  // }
+
 import { ref, reactive, onUnmounted, onMounted } from 'vue'
 import { Editor, EditorContent, BubbleMenu } from '@tiptap/vue-3'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
@@ -399,7 +413,6 @@ import TableRow from '@tiptap/extension-table-row'
 import TableCell from '@tiptap/extension-table-cell'
 import TableHeader from '@tiptap/extension-table-header'
 import { findDir } from '@vue/compiler-core'
-
 
 const CustomTableCell = TableCell.extend({
   addAttributes() {
@@ -502,10 +515,15 @@ onUnmounted(() => editor.destroy())
     margin: 2rem 0;
   }
 
-  min-height: 100%;
-  max-height: 100%;
+  // min-height: 100%;
+  // max-height: 80%;
+  height: 100%;
   overflow-y: scroll;
   padding: 1%;
+
+  // button {
+  //   background-color: purple;
+  // }
 }
 
 /* Table-specific styling */
