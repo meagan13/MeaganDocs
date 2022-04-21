@@ -4,12 +4,25 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   data() {
     return {
-      hideTextEdit: true
+      hideTextEdit: true,
+      hideTableEdit: true,
     }
   },
   methods: {
     toggleShowText() {
+      // if(this.hideTableEdit = true) {
+      //   this.hideTableEdit = !this.hideTableEdit;
+      // }
       this.hideTextEdit = !this.hideTextEdit;
+      console.log(this.hideTextEdit)
+
+    },
+    toggleShowTable() {
+      // if(this.hideTextEdit = false) {
+      //   this.hideTextEdit = !this.hideTextEdit;
+      //   console.log("after switch function:", this.hideTextEdit)
+      // }
+      this.hideTableEdit = !this.hideTableEdit;
     }
   }
 })
@@ -227,11 +240,11 @@ export default defineComponent({
             </div>
           </div>
 
-          <div class="invisible lg:visible lg:flex lg:content-center">
+          <!-- <div class="invisible lg:visible lg:flex lg:content-center">
             <img class="w-4 lg:w-6" src="../../images/vertical-line.png" alt="divider line icon" />
-          </div>
+          </div> -->
 
-          <div class="lg:p-0 lg:flex content-center max-w-1/4 lg:w-auto justify-center">
+          <div v-if="!hideTableEdit" class="lg:p-0 lg:flex content-center max-w-1/4 lg:w-auto justify-center">
             <button
               class="btn btn-large"
               title="Add Table"
@@ -374,11 +387,11 @@ export default defineComponent({
             </button>
           </div>
 
-          <div class="invisible lg:visible lg:flex lg:content-center">
+          <!-- <div class="invisible lg:visible lg:flex lg:content-center">
             <img class="w-4 lg:w-6" src="../../images/vertical-line.png" alt="divider line icon" />
-          </div>
+          </div> -->
 
-          <div class="max-w-1/4 lg:w-auto lg:flex content-center lg:p-0">
+          <div v-if="!hideTextEdit || !hideTableEdit" class="max-w-1/4 lg:w-auto lg:flex content-center lg:p-0">
             <button class="btn btn-large" title="Undo" @click="editor.chain().focus().undo().run()">
               <img class="w-4 lg:w-6" src="../../images/undo_round.png" alt="undo arrow icon" />
             </button>
@@ -402,9 +415,13 @@ export default defineComponent({
         <editor-content class="bg-gray-300 w-full h-full rounded justify-center" :editor="editor" />
       </div>
 
-      <div class="inline-block align-middle col-start-11 col-end-12">
+      <div class="display:inline-block align-middle col-start-11 col-end-12">
         <button @click="toggleShowText">
           <img src="../../images/text-format.png"/>
+        </button>
+
+        <button @click="toggleShowTable" class="h-1">
+          <img src="../../images/edit-table.png" alt="edit table" class="w-6" />
         </button>
       </div>
     </div>
