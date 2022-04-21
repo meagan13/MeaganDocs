@@ -21,6 +21,6 @@
     components: {
       'Navigation': Navigation
     },
-    
+
   }
 </script>

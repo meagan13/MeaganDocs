@@ -398,10 +398,22 @@
   // export default {
   //   data() {
   //     return {
-  //       showTextEdit: false
-  //     }
-  //   }
-  // }
+  //       showTextEdit: false,
+  //     };
+  //   },
+  //    methods: {
+  //      toggleShowText() {
+  //        this.showTextEdit = !this.showTextEdit;
+  //      },
+  //    },
+  // };
+
+// @Editor
+// export default class Editor extends Vue
+//   private showTextEdit: boolean = false
+//   public toggleShowText(): void {
+//     this.showTextEdit = !this.showTextEdit
+//   }
 
 import { ref, reactive, onUnmounted, onMounted } from 'vue'
 import { Editor, EditorContent, BubbleMenu } from '@tiptap/vue-3'
