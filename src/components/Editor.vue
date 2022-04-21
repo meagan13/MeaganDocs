@@ -1,3 +1,20 @@
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  data() {
+    return {
+      hideTextEdit: true
+    }
+  },
+  methods: {
+    toggleShowText() {
+      this.hideTextEdit = !this.hideTextEdit;
+    }
+  }
+})
+</script>
+
 <template>
   <div @keyup.50="findName" class="bg-gray-100 h-screen w-screen justify-center p-0 mt-1">
     <!-- <button class='lg:hidden'
@@ -116,7 +133,7 @@
               </button>
             </div>-->
 
-            <div class="lg:block">
+            <div v-if="!hideTextEdit" class="lg:block">
               <button
                 class="btn btn-large font-bold"
                 title="Bold"
@@ -385,35 +402,19 @@
         <editor-content class="bg-gray-300 w-full h-full rounded justify-center" :editor="editor" />
       </div>
 
-      <div class="inline-block align-middle col-start-11 col-end-12 bg-red-600">
-        <button @click="showTextEdit">
+      <div class="inline-block align-middle col-start-11 col-end-12">
+        <button @click="toggleShowText">
           <img src="../../images/text-format.png"/>
         </button>
       </div>
     </div>
+
+
+
   </div>
 </template>
 
 <script setup lang="ts" >
-  // export default {
-  //   data() {
-  //     return {
-  //       showTextEdit: false,
-  //     };
-  //   },
-  //    methods: {
-  //      toggleShowText() {
-  //        this.showTextEdit = !this.showTextEdit;
-  //      },
-  //    },
-  // };
-
-// @Editor
-// export default class Editor extends Vue
-//   private showTextEdit: boolean = false
-//   public toggleShowText(): void {
-//     this.showTextEdit = !this.showTextEdit
-//   }
 
 import { ref, reactive, onUnmounted, onMounted } from 'vue'
 import { Editor, EditorContent, BubbleMenu } from '@tiptap/vue-3'
