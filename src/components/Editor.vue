@@ -40,18 +40,20 @@ export default defineComponent({
       <editor-content :editor="editor" />
     </div>
 
-    <div v-if="editor" class="bg-gray-200 p-5 lg:grid grid-cols-12">
+    <div v-if="editor" class="bg-gray-200 p-5 lg:grid grid-cols-12 content-center">
 
-      <div class="overflow-auto col-start-2 col-end-11 bg-green-800 text-gray-800 p-2 rounded">
-        <editor-content class="bg-gray-300 w-full h-full rounded justify-center" :editor="editor" />
+      <div class="overflow-auto col-start-3 col-end-11 bg-gray-400 text-gray-800 p-2 rounded">
+        <editor-content class="bg-gray-100 w-full h-full rounded justify-center" :editor="editor" />
       </div>
 
-      <div class="display:inline-block align-middle col-start-11 col-end-12">
-        <button @click="toggleShowText">
+      <div class="flex justify-items-stretch col-start-10 col-end-11">
+        <button @click="toggleShowText" class="p-2">
           <img src="../../images/text-format.png"/>
         </button>
+      <!-- </div> -->
 
-        <button @click="toggleShowTable" class="h-1">
+      <!-- <div class="col-start-10 col-end-11"> -->
+        <button @click="toggleShowTable" class="h-1 p-2">
           <img src="../../images/edit-table.png" alt="edit table" class="w-6" />
         </button>
       </div>
@@ -581,8 +583,8 @@ onUnmounted(() => editor.destroy())
     th {
       font-weight: bold;
       text-align: left;
-      // background-color: #f1f3f5;
-      background-color: rgb(209, 250, 229);
+      background-color: #9CA884
+      // background-color: rgb(209, 250, 213);
     }
 
     .selectedCell:after {
