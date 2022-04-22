@@ -29,7 +29,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div @keyup.50="findName" class="bg-gray-100 h-screen w-screen justify-center p-0 mt-1">
+  <div @keyup.50="findName" class="bg-gray-200 h-screen w-screen justify-center p-0 mt-1">
     <!-- <button class='lg:hidden'
         @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()"
       >
@@ -60,14 +60,14 @@ export default defineComponent({
     <bubble-menu class="lg:hidden" :editor="editor" v-if="editor">
       <button
         @click="editor.chain().focus().toggleBold().run()"
-        :class="[{ 'is-active': editor.isActive('bold') }, 'p-1 bg-gray-300 border border-gray-500']"
+        :class="[{ 'is-active': editor.isActive('bold') }, 'p-1 bg-gray-200 border border-gray-500']"
       >
         <img class="w-4 lg:w-6" src="../../images/bold.png" alt="bold icon" title="Bold" />
       </button>
 
       <button
         @click="editor.chain().focus().toggleItalic().run()"
-        :class="[{ 'is-active': editor.isActive('italic') }, 'p-1 bg-gray-300 border border-gray-500']"
+        :class="[{ 'is-active': editor.isActive('italic') }, 'p-1 bg-gray-200 border border-gray-500']"
       >
         <img
           class="w-4 lg:w-6"
@@ -79,7 +79,7 @@ export default defineComponent({
 
       <button
         @click="editor.chain().focus().toggleStrike().run()"
-        :class="[{ 'is-active': editor.isActive('strike') }, 'p-1 bg-gray-300 border border-gray-500']"
+        :class="[{ 'is-active': editor.isActive('strike') }, 'p-1 bg-gray-200 border border-gray-500']"
       >
         <img
           class="w-4 lg:w-6"
@@ -92,10 +92,10 @@ export default defineComponent({
 
     <div v-if="editor" class="w-full">
       <div
-        class="p-0 bg-gray-300 w-screen h-full place-content-center content-center justify-center"
+        class="p-0 bg-gray-200 w-screen h-full place-content-center content-center justify-center"
       >
         <div
-          class="findme w-full bg-gray-300 lg:p-2 flex flex-wrap place-content-center items-center content-center justify-center"
+          class="findme w-full bg-gray-200 lg:p-2 flex flex-wrap place-content-center items-center content-center justify-center"
         >
         <div
           class="lg:flex content-center place-content-center justify-center lg:p-0 max-w-1/4 lg:w-auto"
