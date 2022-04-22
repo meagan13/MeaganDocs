@@ -36,7 +36,28 @@ export default defineComponent({
         <img class="w-4 lg:w-6" src="../../images/insert_table.png" alt="insert table icon" />
     </button>-->
 
-    <bubble-menu class="findme lg:hidden" :editor="editor" v-if="editor">
+    <div>
+      <editor-content :editor="editor" />
+    </div>
+
+    <div v-if="editor" class="bg-gray-200 p-5 lg:grid grid-cols-12">
+
+      <div class="overflow-auto col-start-2 col-end-11 bg-green-800 text-gray-800 p-2 rounded">
+        <editor-content class="bg-gray-300 w-full h-full rounded justify-center" :editor="editor" />
+      </div>
+
+      <div class="display:inline-block align-middle col-start-11 col-end-12">
+        <button @click="toggleShowText">
+          <img src="../../images/text-format.png"/>
+        </button>
+
+        <button @click="toggleShowTable" class="h-1">
+          <img src="../../images/edit-table.png" alt="edit table" class="w-6" />
+        </button>
+      </div>
+    </div>
+
+    <bubble-menu class="lg:hidden" :editor="editor" v-if="editor">
       <button
         @click="editor.chain().focus().toggleBold().run()"
         :class="[{ 'is-active': editor.isActive('bold') }, 'p-1 bg-gray-300 border border-gray-500']"
@@ -76,11 +97,11 @@ export default defineComponent({
         <div
           class="findme w-full bg-gray-300 lg:p-2 flex flex-wrap place-content-center items-center content-center justify-center"
         >
-          <div
-            class="lg:flex content-center place-content-center justify-center lg:p-0 max-w-1/4 lg:w-auto"
+        <div
+          class="lg:flex content-center place-content-center justify-center lg:p-0 max-w-1/4 lg:w-auto"
             @mouseover="hover = true"
             @mouseleave="hover = false"
-          >
+        >
             <!-- <Menu as="div" class="relative inline-block text-right mx-1 lg:hidden">
               <div>
                 <MenuButton
@@ -237,7 +258,7 @@ export default defineComponent({
               >
                 <img class="w-4 lg:w-6" src="../../images/break.png" alt="line break icon" />
               </button>
-            </div>
+          </div>
           </div>
 
           <!-- <div class="invisible lg:visible lg:flex lg:content-center">
@@ -404,31 +425,8 @@ export default defineComponent({
       </div>
     </div>
 
-    <div>
-      <editor-content :editor="editor" />
-    </div>
-
-    <div v-if="editor" class="bg-gray-200 p-5 lg:grid grid-cols-12">
-      <div
-        class="overflow-auto col-start-2 col-end-11 bg-green-800 text-gray-800 p-2 rounded"
-      >
-        <editor-content class="bg-gray-300 w-full h-full rounded justify-center" :editor="editor" />
-      </div>
-
-      <div class="display:inline-block align-middle col-start-11 col-end-12">
-        <button @click="toggleShowText">
-          <img src="../../images/text-format.png"/>
-        </button>
-
-        <button @click="toggleShowTable" class="h-1">
-          <img src="../../images/edit-table.png" alt="edit table" class="w-6" />
-        </button>
-      </div>
-    </div>
-
-
-
   </div>
+
 </template>
 
 <script setup lang="ts" >
