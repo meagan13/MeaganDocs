@@ -46,16 +46,32 @@ export default defineComponent({
         <editor-content class="bg-gray-100 w-full h-full rounded justify-center" :editor="editor" />
       </div>
 
-      <div class="flex justify-items-stretch col-start-10 col-end-11">
-        <button @click="toggleShowText" class="p-2">
-          <img src="../../images/text-format.png"/>
-        </button>
-      <!-- </div> -->
+      <div class="edit-buttons-div col-start-9 col-end-11 flex lg:justify-evenly items-center">
 
-      <!-- <div class="col-start-10 col-end-11"> -->
-        <button @click="toggleShowTable" class="h-1 p-2">
-          <img src="../../images/edit-table.png" alt="edit table" class="w-6" />
-        </button>
+        <div class="hidden lg:flex">
+          <button title="Edit Text" @click="toggleShowText" class="p-2">
+            <img src="../../images/text-format.png"/>
+          </button>
+        </div>
+
+        <div class="">
+          <button title="Edit Tables" @click="toggleShowTable" class="p-2">
+            <img src="../../images/edit-table.png" alt="edit table" class="w-5 lg:w-6" />
+          </button>
+        </div>
+
+        <div>
+          <button class="btn lg:btn-large" title="Undo" @click="editor.chain().focus().undo().run()">
+            <img class="w-4 lg:w-6" src="../../images/undo_round.png" alt="undo arrow icon" />
+          </button>
+        </div>
+
+        <div>
+          <button class="btn lg:btn-large" title="Redo" @click="editor.chain().focus().redo().run()">
+            <img class="w-4 lg:w-6" src="../../images/redo.png" alt="redo arrow icon" />
+          </button>
+        </div>
+
       </div>
     </div>
 
@@ -429,15 +445,6 @@ export default defineComponent({
             <img class="w-4 lg:w-6" src="../../images/vertical-line.png" alt="divider line icon" />
           </div> -->
 
-          <div v-if="!hideTextEdit || !hideTableEdit" class="max-w-1/4 lg:w-auto lg:flex content-center lg:p-0">
-            <button class="btn btn-large" title="Undo" @click="editor.chain().focus().undo().run()">
-              <img class="w-4 lg:w-6" src="../../images/undo_round.png" alt="undo arrow icon" />
-            </button>
-
-            <button class="btn btn-large" title="Redo" @click="editor.chain().focus().redo().run()">
-              <img class="w-4 lg:w-6" src="../../images/redo.png" alt="redo arrow icon" />
-            </button>
-          </div>
         </div>
       </div>
     </div>
