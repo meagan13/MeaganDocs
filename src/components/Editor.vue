@@ -90,6 +90,19 @@ export default defineComponent({
           title="Strikethrough"
         />
       </button>
+
+      <button
+        @click="editor.chain().focus().unsetAllMarks().run()"
+        :class="[{ 'is-active': editor.isActive('unset')}, 'p-1 bg-gray-200 border border-gray-500']"
+      >
+        <img
+          class="w-4 lg:w-6"
+          src="../../images/clear-format.png"
+          alt="clear formatting icon"
+          title="Clear Formatting"
+        />
+      </button>
+
     </bubble-menu>
 
     <div v-if="editor" class="w-full">
@@ -244,6 +257,8 @@ export default defineComponent({
                   title="Blockquote"
                 />
               </button>
+
+
 
               <button
                 class="btn btn-large"
