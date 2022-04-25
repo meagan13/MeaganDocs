@@ -9,7 +9,7 @@
     }
 
     .btn-large {
-        @apply lg:visible lg:text-lg lg:p-1 lg:px-2 lg:transform lg:hover:translate-y-0.5 lg:uppercase
+        @apply lg:visible lg:text-sm lg:p-1 lg:px-1.5 lg:transform lg:hover:translate-y-0.5 lg:uppercase
     }
 
 }

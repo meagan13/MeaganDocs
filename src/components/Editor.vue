@@ -76,7 +76,7 @@ export default defineComponent({
 
 
       <div
-        class="findme w-full col-start-3 col-end-7 row-start-2 bg-gray-200 lg:p-2"
+        class="w-full col-start-3 col-end-9 row-start-2 bg-gray-200 lg:p-2"
       >
         <div
           class="lg:p-0 max-w-1/4 lg:w-auto"
@@ -183,7 +183,7 @@ export default defineComponent({
           <img class="w-4 lg:w-6" src="../../images/vertical-line.png" alt="divider line icon" />
         </div> -->
 
-        <div v-if="!hideTableEdit" class="lg:p-0 lg:flex content-center max-w-1/4 lg:w-auto justify-center">
+        <div v-if="!hideTableEdit" class="lg:p-0 lg:block content-center max-w-1/4 lg:w-auto justify-center">
           <button
             class="btn btn-large"
             title="Add Table"
