@@ -12,4 +12,11 @@
         @apply lg:visible lg:text-sm lg:p-1 lg:px-1.5 lg:transform lg:hover:translate-y-0.5 lg:uppercase
     }
 
+    .ProseMirror:focus {
+        outline: none !important;
+        border: 1px solid; 
+        border-color: #3D5919;
+        border-radius: 3px;
+        /* box-shadow: 0 0 10px #9CA884; */
+    }
 }

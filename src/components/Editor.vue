@@ -42,7 +42,7 @@ export default defineComponent({
 
     <div v-if="editor" class="bg-gray-200 p-5 lg:grid grid-cols-12 content-center">
 
-      <div class="overflow-auto col-start-3 col-end-11 bg-gray-400 text-gray-800 p-2 rounded">
+      <div class="overflow-auto col-start-3 col-end-11 bg-gray-400 text-gray-800 p-1 rounded">
         <editor-content class="bg-gray-100 w-full h-full rounded justify-center" :editor="editor" />
       </div>
 

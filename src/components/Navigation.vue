@@ -3,7 +3,7 @@
       <!-- <router-link className="px-5 text-gray-200" :to="{ name: 'Home' }">Home</router-link>
       <router-link className="px-5 text-gray-200" to="/about">About</router-link> -->
       <div class="flex h-full w-1/6 content-center items-center justify-center">
-        <a href="/"><img class="h-15 w-15 lg:h-20 lg:w-20 p-1" src="../../images/dgcr_logo_circle.png" alt="datagrove logo" /></a>
+        <a href="/"><img class="max-h-24 w-15 lg:h-20 lg:w-20 p-1" src="../../images/dgcr_logo_circle.png" alt="datagrove logo" /></a>
       </div>
 
       <div class="flex h-full w-5/6 content-center items-center justify-start">
