@@ -8,7 +8,7 @@
 
       <div class="flex h-full w-5/6 content-center items-center justify-start">
         <router-link to="/editor">
-            Text Editor
+            DG|Docs
         </router-link>
       </div>
   </div>
