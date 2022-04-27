@@ -29,7 +29,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div @keyup.50="findName" class="bg-gray-200 h-screen w-screen justify-center p-0 mt-1">
+  <div @keyup.50="findName" class="bg-gray-100 h-screen w-screen justify-center p-0 mt-1">
     <!-- <button class='lg:hidden'
         @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()"
       >
@@ -40,150 +40,41 @@ export default defineComponent({
       <editor-content :editor="editor" />
     </div>
 
-    <div v-if="editor" class="bg-gray-200 p-5 lg:grid grid-cols-12 content-center">
+    <div v-if="editor" class="bg-gray-100 p-5 lg:grid grid-cols-12 content-center">
 
       <div class="overflow-auto col-start-3 col-end-11 bg-gray-400 text-gray-800 p-1 rounded">
         <editor-content class="bg-gray-100 w-full h-full rounded justify-center" :editor="editor" />
       </div>
 
-      <div class="edit-buttons-div col-start-9 col-end-11 flex justify-end lg:justify-evenly items-center">
+      <div class="edit-buttons-div col-start-3 col-end-11 row-start-2 flex justify-between items-center lg:grid lg:grid-cols-12 lg:block ">
 
-        <div class="hidden lg:flex">
-          <button title="Edit Text" @click="toggleShowText" class="p-2">
-            <img src="../../images/text-format.png"/>
-          </button>
-        </div>
+        <div class="static-buttons-div flex items-center lg:col-start-1 lg:col-end-3">
+          <div class="hidden lg:flex">
+            <button title="Edit Text" @click="toggleShowText" class="p-2">
+              <img src="../../images/text-format.png"/>
+            </button>
+          </div>
 
-        <div class="">
-          <button title="Edit Tables" @click="toggleShowTable" class="p-2">
-            <img src="../../images/edit-table.png" alt="edit table" class="w-5 lg:w-6" />
-          </button>
-        </div>
+          <div class="">
+            <button title="Edit Tables" @click="toggleShowTable" class="p-2">
+              <img src="../../images/edit-table.png" alt="edit table" class="w-5 lg:w-6" />
+            </button>
+          </div>
 
-        <div>
-          <button class="btn lg:btn-large" title="Undo" @click="editor.chain().focus().undo().run()">
-            <img class="w-4 lg:w-6" src="../../images/undo_round.png" alt="undo arrow icon" />
-          </button>
-        </div>
+          <div>
+            <button class="btn lg:btn-large" title="Undo" @click="editor.chain().focus().undo().run()">
+              <img class="w-4 lg:w-6" src="../../images/undo_round.png" alt="undo arrow icon" />
+            </button>
+          </div>
 
-        <div>
-          <button class="btn lg:btn-large" title="Redo" @click="editor.chain().focus().redo().run()">
-            <img class="w-4 lg:w-6" src="../../images/redo.png" alt="redo arrow icon" />
-          </button>
-        </div>
-
-      </div>
-
-
-      <div
-        class="w-full col-start-3 col-end-9 row-start-2 bg-gray-200 lg:p-2"
-      >
-        <div
-          class="lg:p-0 max-w-1/4 lg:w-auto"
-            @mouseover="hover = true"
-            @mouseleave="hover = false"
-        >
-          <div v-if="!hideTextEdit" class="lg:block">
-              <button
-                class="btn btn-large font-bold"
-                title="Bold"
-                @click="editor.chain().focus().toggleBold().run()"
-                :class="{ 'is-active': editor.isActive('bold') }"
-              >
-                <img class="w-4 lg:w-6" src="../../images/bold.png" alt="bold icon" title="Bold" />
-              </button>
-
-              <button
-                class="btn btn-large italic"
-                title="Italic"
-                @click="editor.chain().focus().toggleItalic().run()"
-                :class="{ 'is-active': editor.isActive('italic') }"
-              >
-                <img class="w-4 lg:w-6" src="../../images/italic-font.png" alt="italic icon" />
-              </button>
-
-              <button
-                class="btn btn-large line-through"
-                title="Strikethrough"
-                @click="editor.chain().focus().toggleStrike().run()"
-                :class="{ 'is-active': editor.isActive('strike') }"
-              >
-                <img
-                  class="w-4 lg:w-6"
-                  src="../../images/strikethrough.png"
-                  alt="strikethrough icon"
-                />
-              </button>
-
-              <button class="btn btn-large" @click="editor.chain().focus().unsetAllMarks().run()">
-                <img
-                  class="w-4 lg:w-6"
-                  src="../../images/clear-format.png"
-                  alt="clear formatting icon"
-                  title="Clear Formatting"
-                />
-              </button>
-
-              <button
-                class="btn btn-large"
-                title="Code Block"
-                @click="editor.chain().focus().toggleCodeBlock().run()"
-                :class="{ 'is-active': editor.isActive('codeBlock') }"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-4 lg:w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                  />
-                </svg>
-              </button>
-
-              <button
-                class="btn btn-large"
-                @click="editor.chain().focus().toggleBlockquote().run()"
-                :class="{ 'is-active': editor.isActive('blockquote') }"
-              >
-                <img
-                  class="w-4 lg:w-6"
-                  src="../../images/quote.png"
-                  alt="blockquote icon"
-                  title="Blockquote"
-                />
-              </button>
-
-
-
-              <button
-                class="btn btn-large"
-                title="Add Horizontal Line"
-                @click="editor.chain().focus().setHorizontalRule().run()"
-              >
-                <img class="w-4 lg:w-6" src="../../images/line.png" alt="add line icon" />
-              </button>
-
-              <button
-                class="btn btn-large"
-                title="Add Line Break"
-                @click="editor.chain().focus().setHardBreak().run()"
-              >
-                <img class="w-4 lg:w-6" src="../../images/break.png" alt="line break icon" />
-              </button>
+          <div>
+            <button class="btn lg:btn-large" title="Redo" @click="editor.chain().focus().redo().run()">
+              <img class="w-4 lg:w-6" src="../../images/redo.png" alt="redo arrow icon" />
+            </button>
           </div>
         </div>
 
-        <!-- <div class="invisible lg:visible lg:flex lg:content-center">
-          <img class="w-4 lg:w-6" src="../../images/vertical-line.png" alt="divider line icon" />
-        </div> -->
-
-        <div v-if="!hideTableEdit" class="lg:p-0 lg:block content-center max-w-1/4 lg:w-auto justify-center">
+        <div v-if="!hideTableEdit" class="table-buttons-div lg:p-0 lg:block lg:col-start-8 lg:col-end-13 content-center max-w-1/4 lg:w-auto justify-center">
           <button
             class="btn btn-large"
             title="Add Table"
@@ -281,7 +172,7 @@ export default defineComponent({
             <img class="w-4 lg:w-6" src="../../images/split_cell.png" alt="split cell icon" />
           </button>
 
-          <button
+          <!-- <button
             class="btn btn-large previous"
             title="Next Cell"
             @click="editor.chain().focus().goToNextCell().run()"
@@ -301,9 +192,9 @@ export default defineComponent({
                 d="M14 5l7 7m0 0l-7 7m7-7H3"
               />
             </svg>
-          </button>
+          </button> -->
 
-          <button
+          <!-- <button
             class="btn btn-large next"
             title="Previous Cell"
             @click="editor.chain().focus().goToPreviousCell().run()"
@@ -323,12 +214,113 @@ export default defineComponent({
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
               />
             </svg>
-          </button>
+          </button> -->
         </div>
+               
+      </div>
 
-        <!-- <div class="invisible lg:visible lg:flex lg:content-center">
-          <img class="w-4 lg:w-6" src="../../images/vertical-line.png" alt="divider line icon" />
-        </div> -->
+
+      <div
+        class="w-full col-start-5 col-end-9 row-start-2 bg-gray-100 lg:p-2"
+      >
+        <div
+          class="lg:p-0 max-w-1/4 lg:w-auto"
+            @mouseover="hover = true"
+            @mouseleave="hover = false"
+        >
+          <div v-if="!hideTextEdit" class="lg:block">
+              <button
+                class="btn btn-large font-bold"
+                title="Bold"
+                @click="editor.chain().focus().toggleBold().run()"
+                :class="{ 'is-active': editor.isActive('bold') }"
+              >
+                <img class="w-4 lg:w-6" src="../../images/bold.png" alt="bold icon" title="Bold" />
+              </button>
+
+              <button
+                class="btn btn-large italic"
+                title="Italic"
+                @click="editor.chain().focus().toggleItalic().run()"
+                :class="{ 'is-active': editor.isActive('italic') }"
+              >
+                <img class="w-4 lg:w-6" src="../../images/italic-font.png" alt="italic icon" />
+              </button>
+
+              <button
+                class="btn btn-large line-through"
+                title="Strikethrough"
+                @click="editor.chain().focus().toggleStrike().run()"
+                :class="{ 'is-active': editor.isActive('strike') }"
+              >
+                <img
+                  class="w-4 lg:w-6"
+                  src="../../images/strikethrough.png"
+                  alt="strikethrough icon"
+                />
+              </button>
+
+              <button class="btn btn-large" @click="editor.chain().focus().unsetAllMarks().run()">
+                <img
+                  class="w-4 lg:w-6"
+                  src="../../images/clear-format.png"
+                  alt="clear formatting icon"
+                  title="Clear Formatting"
+                />
+              </button>
+
+              <button
+                class="btn btn-large"
+                title="Code Block"
+                @click="editor.chain().focus().toggleCodeBlock().run()"
+                :class="{ 'is-active': editor.isActive('codeBlock') }"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-4 lg:w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                  />
+                </svg>
+              </button>
+
+              <button
+                class="btn btn-large"
+                @click="editor.chain().focus().toggleBlockquote().run()"
+                :class="{ 'is-active': editor.isActive('blockquote') }"
+              >
+                <img
+                  class="w-4 lg:w-6"
+                  src="../../images/quote.png"
+                  alt="blockquote icon"
+                  title="Blockquote"
+                />
+              </button>
+
+              <button
+                class="btn btn-large"
+                title="Add Horizontal Line"
+                @click="editor.chain().focus().setHorizontalRule().run()"
+              >
+                <img class="w-4 lg:w-6" src="../../images/line.png" alt="add line icon" />
+              </button>
+
+              <button
+                class="btn btn-large"
+                title="Add Line Break"
+                @click="editor.chain().focus().setHardBreak().run()"
+              >
+                <img class="w-4 lg:w-6" src="../../images/break.png" alt="line break icon" />
+              </button>
+          </div>
+        </div>
 
       </div>
 
@@ -338,14 +330,14 @@ export default defineComponent({
     <bubble-menu class="lg:hidden" :editor="editor" v-if="editor">
       <button
         @click="editor.chain().focus().toggleBold().run()"
-        :class="[{ 'is-active': editor.isActive('bold') }, 'p-1 bg-gray-200 border border-gray-500']"
+        :class="[{ 'is-active': editor.isActive('bold') }, 'p-1 bg-gray-100 border border-gray-500']"
       >
         <img class="w-4 lg:w-6" src="../../images/bold.png" alt="bold icon" title="Bold" />
       </button>
 
       <button
         @click="editor.chain().focus().toggleItalic().run()"
-        :class="[{ 'is-active': editor.isActive('italic') }, 'p-1 bg-gray-200 border border-gray-500']"
+        :class="[{ 'is-active': editor.isActive('italic') }, 'p-1 bg-gray-100 border border-gray-500']"
       >
         <img
           class="w-4 lg:w-6"
@@ -357,7 +349,7 @@ export default defineComponent({
 
       <button
         @click="editor.chain().focus().toggleStrike().run()"
-        :class="[{ 'is-active': editor.isActive('strike') }, 'p-1 bg-gray-200 border border-gray-500']"
+        :class="[{ 'is-active': editor.isActive('strike') }, 'p-1 bg-gray-00 border border-gray-500']"
       >
         <img
           class="w-4 lg:w-6"
