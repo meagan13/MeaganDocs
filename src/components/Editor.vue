@@ -228,9 +228,9 @@ export default defineComponent({
             @mouseover="hover = true"
             @mouseleave="hover = false"
         >
-          <div v-if="!hideTextEdit" class="lg:block">
+          <div v-if="!hideTextEdit" class="edit-text-div hidden lg:block">
               <button
-                class="btn btn-large font-bold"
+                class="btn lg:btn-large font-bold"
                 title="Bold"
                 @click="editor.chain().focus().toggleBold().run()"
                 :class="{ 'is-active': editor.isActive('bold') }"
@@ -239,7 +239,7 @@ export default defineComponent({
               </button>
 
               <button
-                class="btn btn-large italic"
+                class="btn lg:btn-large italic"
                 title="Italic"
                 @click="editor.chain().focus().toggleItalic().run()"
                 :class="{ 'is-active': editor.isActive('italic') }"
