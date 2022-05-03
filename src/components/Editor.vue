@@ -46,16 +46,16 @@ export default defineComponent({
         <editor-content class="bg-gray-100 w-full h-full rounded justify-center" :editor="editor" />
       </div>
 
-      <div class="edit-buttons-div col-start-3 col-end-11 row-start-2 flex justify-between items-center lg:grid lg:grid-cols-12 lg:block ">
+      <div class="edit-buttons-div col-start-3 col-end-11 row-start-2 flex justify-start items-center  ">
 
-        <div class="static-buttons-div flex items-center lg:col-start-1 lg:col-end-3">
-          <div class="hidden lg:flex">
+        <div class="static-buttons-div flex content-center justify-center items-center">
+          <!-- <div class="hidden lg:flex">
             <button title="Edit Text" @click="toggleShowText" class="p-2">
               <img src="../../images/text-format.png"/>
             </button>
-          </div>
+          </div> -->
 
-          <div class="">
+          <div class="btn lg:btn-large">
             <button title="Edit Tables" @click="toggleShowTable" class="p-2">
               <img src="../../images/edit-table.png" alt="edit table" class="w-5 lg:w-6" />
             </button>
@@ -74,7 +74,7 @@ export default defineComponent({
           </div>
         </div>
 
-        <div v-if="!hideTableEdit" class="table-buttons-div lg:p-0 lg:block lg:col-start-8 lg:col-end-13 content-center max-w-1/4 lg:w-auto justify-center">
+        <div v-if="!hideTableEdit" class="table-buttons-div lg:p-0 ml-10 flex content-center max-w-1/4 min-w-fit lg:w-auto justify-center">
           <button
             class="btn btn-large"
             title="Add Table"
@@ -228,7 +228,7 @@ export default defineComponent({
             @mouseover="hover = true"
             @mouseleave="hover = false"
         >
-          <div v-if="!hideTextEdit" class="edit-text-div hidden lg:block">
+          <!-- <div v-if="!hideTextEdit" class="edit-text-div hidden lg:block">
               <button
                 class="btn lg:btn-large font-bold"
                 title="Bold"
@@ -319,7 +319,7 @@ export default defineComponent({
               >
                 <img class="w-4 lg:w-6" src="../../images/break.png" alt="line break icon" />
               </button>
-          </div>
+          </div> -->
         </div>
 
       </div>
@@ -327,7 +327,7 @@ export default defineComponent({
 
     </div>
 
-    <bubble-menu class="lg:hidden" :editor="editor" v-if="editor">
+    <bubble-menu class="hover-menu bubble-menu" :editor="editor" v-if="editor">
       <button
         @click="editor.chain().focus().toggleBold().run()"
         :class="[{ 'is-active': editor.isActive('bold') }, 'p-1 bg-gray-100 border border-gray-500']"
