@@ -536,7 +536,7 @@ onUnmounted(() => editor.destroy())
     th {
       font-weight: bold;
       text-align: left;
-      background-color: #9CA884
+      background-color: #9cb3c3;
       // background-color: rgb(209, 250, 213);
     }
 
