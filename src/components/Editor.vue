@@ -29,7 +29,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div @keyup.50="findName" class="bg-gray-100 h-screen w-screen justify-center p-0 mt-1">
+  <div @keyup.50="findName" class="bg-gray-100 h-screen w-screen justify-center relative p-0 mt-1">
     <!-- <button class='lg:hidden'
         @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()"
       >
@@ -40,7 +40,7 @@ export default defineComponent({
       <editor-content :editor="editor" />
     </div>
 
-    <div v-if="editor" class="bg-gray-100 p-5 lg:grid grid-cols-12 content-center">
+    <div v-if="editor" class="editor-div bg-gray-100 p-5 w-full lg:grid grid-cols-12 content-center absolute bottom-20">
 
       <div class="overflow-auto col-start-3 col-end-11 bg-gray-400 text-gray-800 p-1 rounded">
         <editor-content class="bg-gray-100 w-full h-full rounded justify-center" :editor="editor" />
