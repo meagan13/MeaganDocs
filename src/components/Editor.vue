@@ -44,17 +44,17 @@ export default defineComponent({
       <h3>Add messages here</h3>
     </div> -->
 
-    <div v-if="editor" class="editor-div bg-gray-100 p-5 w-full h-full lg:grid grid-cols-12 grid-rows-6 content-center relative">
+    <div v-if="editor" class="editor-div bg-gray-100 p-5 w-full h-full content-center relative">
 
-      <div class="messages bg-red-300 h-3/4 border-2 border-gray-400 rounded lg:col-start-3 lg:col-end-11 lg:row-start-1 lg:row-end-5">
+      <div class="messages bg-red-300 h-3/4 border-2 border-gray-400 rounded">
 
       </div>
 
-      <div class="overflow-auto col-start-3 col-end-11 row-start-5 row-end-6 bg-gray-400 text-gray-800 p-1 mt-1 rounded">
+      <div class="overflow-auto bg-gray-400 text-gray-800 p-1 mt-1 rounded">
         <editor-content class="bg-gray-100 w-full h-full rounded justify-center" :editor="editor" />
       </div>
 
-      <div class="edit-buttons-div col-start-3 col-end-11 row-start-6 row-end-7 flex justify-start items-center  ">
+      <div class="edit-buttons-div flex justify-start items-center  ">
 
         <div class="static-buttons-div flex content-center justify-center items-center">
           <!-- <div class="hidden lg:flex">
