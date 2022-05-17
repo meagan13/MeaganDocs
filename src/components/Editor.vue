@@ -46,11 +46,11 @@ export default defineComponent({
 
     <div v-if="editor" class="editor-div bg-gray-100 p-5 w-full h-full content-center">
 
-      <div class="messages bg-red-300 h-3/5 border-2 border-gray-400 rounded">
+      <div class="messages h-3/5 border border-gray-400 p-1">
         <h1>Add messages here...</h1>
       </div>
 
-      <div class="max-h-40 bg-gray-400 rounded mt-1 p-1">
+      <div class="max-h-40 bg-gray-400 rounded mt-1 p-0.5">
         <div class="overflow-auto text-gray-800 max-h-36 rounded">
           <editor-content class="bg-gray-100 w-full h-full rounded justify-center" :editor="editor" />
         </div>
