@@ -29,7 +29,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div @keyup.50="findName" class="bg-gray-100 h-screen w-screen justify-center p-0 mt-1">
+  <div class="bg-gray-100 h-screen w-screen justify-center p-0 mt-1">
     <!-- <button class='lg:hidden'
         @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()"
       >
@@ -40,13 +40,23 @@ export default defineComponent({
       <editor-content :editor="editor" />
     </div>
 
-    <div v-if="editor" class="bg-gray-100 p-5 lg:grid grid-cols-12 content-center">
+    <!-- <div class="messages-div absolute inset-x-0 top-1 h-3/4 bg-red-300 m-5 border-2 border-gray-400 rounded overflow">
+      <h3>Add messages here</h3>
+    </div> -->
 
-      <div class="overflow-auto col-start-3 col-end-11 bg-gray-400 text-gray-800 p-1 rounded">
-        <editor-content class="bg-gray-100 w-full h-full rounded justify-center" :editor="editor" />
+    <div v-if="editor" class="editor-div bg-gray-100 p-5 w-full h-full content-center">
+
+      <div class="messages h-3/5 border border-gray-400 p-1">
+        <h1>Add messages here...</h1>
       </div>
 
-      <div class="edit-buttons-div col-start-3 col-end-11 row-start-2 flex justify-start items-center  ">
+      <div class="max-h-40 bg-gray-400 rounded mt-1 p-0.5">
+        <div class="overflow-auto text-gray-800 max-h-36 rounded">
+          <editor-content class="bg-gray-100 w-full h-full rounded justify-center" :editor="editor" />
+        </div>
+      </div>
+
+      <div class="edit-buttons-div flex justify-start items-center  ">
 
         <div class="static-buttons-div flex content-center justify-center items-center">
           <!-- <div class="hidden lg:flex">
@@ -220,14 +230,14 @@ export default defineComponent({
       </div>
 
 
-      <div
+      <!-- <div
         class="w-full col-start-5 col-end-9 row-start-2 bg-gray-100 lg:p-2"
       >
         <div
           class="lg:p-0 max-w-1/4 lg:w-auto"
             @mouseover="hover = true"
             @mouseleave="hover = false"
-        >
+        > -->
           <!-- <div v-if="!hideTextEdit" class="edit-text-div hidden lg:block">
               <button
                 class="btn lg:btn-large font-bold"
@@ -320,9 +330,9 @@ export default defineComponent({
                 <img class="w-4 lg:w-6" src="../../images/break.png" alt="line break icon" />
               </button>
           </div> -->
-        </div>
+        <!-- </div> -->
 
-      </div>
+      <!-- </div> -->
 
 
     </div>
@@ -349,7 +359,7 @@ export default defineComponent({
 
       <button
         @click="editor.chain().focus().toggleStrike().run()"
-        :class="[{ 'is-active': editor.isActive('strike') }, 'p-1 bg-gray-00 border border-gray-500']"
+        :class="[{ 'is-active': editor.isActive('strike') }, 'p-1 bg-gray-100 border border-gray-500']"
       >
         <img
           class="w-4 lg:w-6"
@@ -361,7 +371,7 @@ export default defineComponent({
 
       <button
         @click="editor.chain().focus().unsetAllMarks().run()"
-        :class="[{ 'is-active': editor.isActive('unset')}, 'p-1 bg-gray-200 border border-gray-500']"
+        :class="[{ 'is-active': editor.isActive('unset')}, 'p-1 bg-gray-100 border border-gray-500']"
       >
         <img
           class="w-4 lg:w-6"
