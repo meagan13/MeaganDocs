@@ -29,7 +29,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="bg-gray-100 h-screen w-screen justify-center relative p-0 mt-1">
+  <div class="bg-gray-100 h-screen w-screen justify-center p-0 mt-1">
     <!-- <button class='lg:hidden'
         @click="editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()"
       >
@@ -44,7 +44,7 @@ export default defineComponent({
       <h3>Add messages here</h3>
     </div> -->
 
-    <div v-if="editor" class="editor-div bg-gray-100 p-5 w-full h-full content-center relative">
+    <div v-if="editor" class="editor-div bg-gray-100 p-5 w-full h-full content-center">
 
       <div class="messages bg-red-300 h-3/5 border-2 border-gray-400 rounded">
         <h1>Add messages here...</h1>
@@ -359,7 +359,7 @@ export default defineComponent({
 
       <button
         @click="editor.chain().focus().toggleStrike().run()"
-        :class="[{ 'is-active': editor.isActive('strike') }, 'p-1 bg-gray-00 border border-gray-500']"
+        :class="[{ 'is-active': editor.isActive('strike') }, 'p-1 bg-gray-100 border border-gray-500']"
       >
         <img
           class="w-4 lg:w-6"
@@ -371,7 +371,7 @@ export default defineComponent({
 
       <button
         @click="editor.chain().focus().unsetAllMarks().run()"
-        :class="[{ 'is-active': editor.isActive('unset')}, 'p-1 bg-gray-200 border border-gray-500']"
+        :class="[{ 'is-active': editor.isActive('unset')}, 'p-1 bg-gray-100 border border-gray-500']"
       >
         <img
           class="w-4 lg:w-6"
